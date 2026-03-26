@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishaan Patel | Software Engineer</title>
+    <meta name="description" content="Ishaan Patel - MS Computer Science at NC State, specializing in ML/AI. Background in systems engineering, high-performance computing, and enterprise software.">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Ishaan<span>.</span></a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#writing">Writing</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="imgs/pf.png" alt="Ishaan Patel" class="hero-image">
+            <h1>Ishaan <span>Patel</span></h1>
+            <p class="hero-subtitle">MS Computer Science at NC State | ML/AI Concentration</p>
+            <div class="hero-links">
+                <a href="https://github.com/ishaan1402" target="_blank" class="btn">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://linkedin.com/in/ishaan1402" target="_blank" class="btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:ishbhagat02@gmail.com" class="btn">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <p>
+                        I'm currently pursuing my Master's in Computer Science at NC State University, 
+                        with a concentration in Machine Learning and Artificial Intelligence. My background 
+                        spans systems engineering, high-performance computing, and enterprise software development.
+                    </p>
+                    <p>
+                        Prior to graduate school, I worked as a Software Engineer at Prometheus Group and 
+                        completed two internships at Fidelity Investments, where I gained hands-on experience 
+                        with cloud infrastructure, real-time data pipelines, and production systems. My 
+                        undergraduate research at UNC Charlotte focused on high-performance data structures, 
+                        working with learned indexes and B+ trees.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="research" id="research">
+        <div class="container">
+            <h2 class="section-title fade-in">Research</h2>
+            <div class="research-content">
+                <div class="research-info fade-in">
+                    <h3>High-Performance Data Structures for Dynamic Graph Workloads</h3>
+                    <p>
+                        During my undergraduate research at UNC Charlotte's Data Intelligence Research Laboratory, 
+                        I specialized in high-performance data structures optimized for dynamic graph workloads.
+                    </p>
+                    <p>
+                        My work focused on implementing and optimizing Microsoft's ALEX learned index and the 
+                        industry-leading STX B+ tree using C++. I accelerated graph analysis algorithms including 
+                        PageRank and Breadth First Search through multithreaded implementations.
+                    </p>
+                    <div class="stat-highlight">
+                        <span class="stat-number">65%</span>
+                        <span class="stat-text">Improvement in query time over baseline methods, validated on SNAP datasets using the UNCC High Performance Computing Cluster</span>
+                    </div>
+                </div>
+                <div class="research-highlights fade-in">
+                    <div class="highlight-card">
+                        <h4>ALEX Learned Index</h4>
+                        <p>Implemented Microsoft's adaptive learned index structure that uses machine learning to predict data positions, achieving significant speedups over traditional indexing.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h4>STX B+ Tree</h4>
+                        <p>Optimized the industry-standard STX B+ tree implementation for dynamic graph workloads with multithreaded read operations.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h4>HPC Validation</h4>
+                        <p>Conducted independent research leveraging the UNCC High Performance Computing Cluster, validating performance improvements on large-scale SNAP datasets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Section -->
+    <section class="writing" id="writing">
+        <div class="container">
+            <h2 class="section-title fade-in">Writing</h2>
+            <p class="writing-intro fade-in">Technical notes, project findings, and things I'm learning.</p>
+            <div class="posts-grid" id="posts-grid">
+                <div class="no-posts fade-in">
+                    <i class="fas fa-pen-fancy"></i>
+                    <p>Posts coming soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Modal -->
+    <div class="post-modal" id="post-modal">
+        <div class="post-modal-content">
+            <button class="post-modal-close" id="post-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <article class="post-article" id="post-article">
+                <header class="post-header">
+                    <h1 id="post-title"></h1>
+                    <time id="post-date"></time>
+                </header>
+                <div class="post-body" id="post-body"></div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Aug 2025 - Present</span>
+                        <h3>NC State University</h3>
+                        <h4>MS in Computer Science</h4>
+                        <ul>
+                            <li>Concentration in Machine Learning and Artificial Intelligence</li>
+                            <li>Building on foundation in systems engineering and high-performance computing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Aug 2024 - July 2025</span>
+                        <h3>Prometheus Group</h3>
+                        <h4>Software Engineer</h4>
+                        <ul>
+                            <li>Implemented features and resolved defects across C# .NET and React services</li>
+                            <li>Refactored legacy components following Domain-Driven Design principles</li>
+                            <li>Built automated testing framework integrated into CI/CD pipeline</li>
+                            <li>Reduced sprint regression time by 40%</li>
+                            <li>Guided junior developers on architecture and code quality</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Summer 2023</span>
+                        <h3>Fidelity Investments</h3>
+                        <h4>Software Engineer Intern</h4>
+                        <ul>
+                            <li>Integrated Azure Messaging Service for real-time data pipelines</li>
+                            <li>Used Java ORM patterns to manage large-scale 401(k) transactions</li>
+                            <li>Reduced processing latency by 34%</li>
+                            <li>Architected modular, multi-tier application in Maven + Spring Boot</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Jan 2023 - Jan 2024</span>
+                        <h3>UNC Charlotte</h3>
+                        <h4>Undergraduate Researcher</h4>
+                        <ul>
+                            <li>Specialized in high-performance C++ data structures</li>
+                            <li>Implemented ALEX learned index and STX B+ tree optimizations</li>
+                            <li>Achieved 65% improvement in query time</li>
+                            <li>Conducted research on UNCC HPC Cluster with SNAP datasets</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Summer 2022</span>
+                        <h3>Fidelity Investments</h3>
+                        <h4>Software Engineer Intern</h4>
+                        <ul>
+                            <li>Built REST API endpoints and AWS Lambda functions for Fidelity Bloom</li>
+                            <li>Supported 10,000+ daily users with 99.9% uptime</li>
+                            <li>Automated infrastructure using AWS CloudFormation</li>
+                            <li>Implemented CI/CD pipeline using Jenkins and UrbanCode Deploy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>C++</li>
+                        <li>Java</li>
+                        <li>C</li>
+                        <li>C#</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>ML / Data</h3>
+                    <ul class="skill-list">
+                        <li>PyTorch</li>
+                        <li>NumPy</li>
+                        <li>Pandas</li>
+                        <li>Scikit-learn</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Cloud & DevOps</h3>
+                    <ul class="skill-list">
+                        <li>AWS</li>
+                        <li>Azure</li>
+                        <li>Docker</li>
+                        <li>Kubernetes</li>
+                        <li>Jenkins</li>
+                        <li>Rancher</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-in">
+                    <h3>Frameworks & Tools</h3>
+                    <ul class="skill-list">
+                        <li>.NET</li>
+                        <li>React</li>
+                        <li>Spring Boot</li>
+                        <li>Maven</li>
+                        <li>Git</li>
+                        <li>Grafana</li>
+                        <li>CMake</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="resume" id="resume">
+        <div class="container">
+            <h2 class="section-title fade-in">Resume</h2>
+            <div class="resume-content fade-in">
+                <div class="resume-preview">
+                    <iframe src="docs/Resume (18).pdf" title="Resume Preview"></iframe>
+                </div>
+                <div class="resume-actions">
+                    <a href="docs/Resume (18).pdf" target="_blank" class="resume-btn">
+                        <i class="fas fa-external-link-alt"></i> View Full Resume
+                    </a>
+                    <a href="docs/Resume (18).pdf" download class="resume-btn secondary">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="contact-content fade-in">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email</h4>
+                    <a href="mailto:ishbhagat02@gmail.com">ishbhagat02@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h4>LinkedIn</h4>
+                    <a href="https://linkedin.com/in/ishaan1402" target="_blank">linkedin.com/in/ishaan1402</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <h4>GitHub</h4>
+                    <a href="https://github.com/ishaan1402" target="_blank">github.com/ishaan1402</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Ishaan Patel. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

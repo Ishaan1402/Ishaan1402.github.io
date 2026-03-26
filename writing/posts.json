@@ -1,0 +1,10 @@
+{
+  "posts": [
+    {
+      "id": "learned-indexes-intro",
+      "title": "Notes on Learned Indexes",
+      "date": "2026-02-24",
+      "description": "What I learned from a year of research on ALEX and other learned index structures."
+    }
+  ]
+}
