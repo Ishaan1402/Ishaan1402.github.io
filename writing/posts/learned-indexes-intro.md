@@ -18,7 +18,8 @@ In the original RMI paper: [The Case for Learned Index Structures](https://arxiv
 
 Specifically, if a model can learn the empirical CDF (Cumulative Distribution Function) of all key values stored, then you can effectively use that as a functioning index. We would represent the querying within this index as:
 
-$$\text{position} = \text{CDF}(\text{key}) \times N$$ 
+$$\\text{position} = \\text{CDF}(\\text{key}) \\times N$$
+
 During bulk loading, ALEX fits linear models that map keys to predicted positions within a node’s local key range. These models approximate the local data distribution and ALEX, using a cost model, adapts by splitting nodes more aggressively in regions where the distribution is irregular. 
 
 During query time, the root node computes a(key) + b, the linear function already approximated after loading. It then passes the result down to the appropriate child node which then uses it's linear function, based on it's range of the CDF curve, to approximate location of the key. It continues on this path until reaching a leaf node, in the form of a gapped array, where finally the model will perform a local exponential search to quickly find the position of the key. 

@@ -658,6 +658,18 @@ section {
     margin: 40px 0;
 }
 
+/* KaTeX (math) inside posts */
+.post-body .katex-display {
+    margin: 1.25em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 0;
+}
+
+.post-body p:has(.katex-display) {
+    text-align: center;
+}
+
 /* Experience Section */
 .experience {
     background: var(--light-bg);

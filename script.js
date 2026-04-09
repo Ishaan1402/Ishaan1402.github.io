@@ -145,6 +145,16 @@ document.addEventListener('DOMContentLoaded', function() {
             postBody.innerHTML = marked.parse(markdown, { gfm: true, breaks: false });
             wrapPostTables(postBody);
 
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(postBody, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ],
+                    throwOnError: false
+                });
+            }
+
             postModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         } catch (error) {
