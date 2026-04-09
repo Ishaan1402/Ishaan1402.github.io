@@ -1,7 +1,7 @@
 
 My team investigated two separate questions:
 1) Can we reconfigure learned index structures, e.g. ALEX, to store dynamic sparse graph data structures?
-2) If possible, are there any advantages learned indices exhibit for dynamic graph insertion or graph traversal operations over standard Compressed Sparse Row-based structures? If not, what can we learn? 
+2) If possible, are there any advantages learned indices exhibit for dynamic graph insertion or graph traversal operations over standard Compressed Sparse Row-based structures? If not, what can we learn?
 
 
 # Background
@@ -18,11 +18,11 @@ In the original RMI paper: [The Case for Learned Index Structures](https://arxiv
 
 Specifically, if a model can learn the empirical CDF (Cumulative Distribution Function) of all key values stored, then you can effectively use that as a functioning index. We would represent the querying within this index as:
 
-$$\\text{position} = \\text{CDF}(\\text{key}) \\times N$$
+$$\text{position} = \text{CDF}(\text{key}) \times N$$
 
 During bulk loading, ALEX fits linear models that map keys to predicted positions within a node’s local key range. These models approximate the local data distribution and ALEX, using a cost model, adapts by splitting nodes more aggressively in regions where the distribution is irregular. 
 
-During query time, the root node computes a(key) + b, the linear function already approximated after loading. It then passes the result down to the appropriate child node which then uses it's linear function, based on it's range of the CDF curve, to approximate location of the key. It continues on this path until reaching a leaf node, in the form of a gapped array, where finally the model will perform a local exponential search to quickly find the position of the key. 
+During query time, the root node computes a(key) + b, the linear function already approximated after loading. It then passes the result down to the appropriate child node which then uses its linear function, based on its range of the CDF curve, to approximate location of the key. It continues on this path until reaching a leaf node, in the form of a gapped array, where finally the model will perform a local exponential search to quickly find the position of the key. 
 
 Insertion uses the same logic to predict where to store the key. The model will try to fill the key in an appropriate gap. If there's no gap then it will shift elements in the array. If the array is too full, the index will trigger a split to divide the node in two. 
 
@@ -43,16 +43,36 @@ key   = (uint64_t(u) << 32) | uint64_t(v)
 value = std::pair<uint64_t, uint32_t>
 ```
 
-This encoding orders edges by the source vertex `u`. In sparse graphs, this creates large gaps in key space, which affects model accuracy and increases node splitting. I'll touch on the impact of this in the later sections. 
+This encoding orders edges by the source vertex `u`. In sparse graphs, this creates large gaps in key space, which affects model accuracy and increases node splitting. I'll touch on the impact of this in the later sections.
 
-We examined very closely the differences in CDF approximation between the graph and KV workloads as well, shown in the following figures.
+| Dataset          | Nodes         | Edges         | Edges/Node | Diameter | Avg Clustering |
+| ---------------- | ------------- | ------------- | ---------- | -------- | -------------- |
+| Orkut            | 3,072,441     | 117,185,083   | 38.14      | 9        | 0.167          |
+| LiveJournal      | 3,997,962     | 34,681,189    | 8.67       | 17       | 0.284          |
+| Cit-Patents      | 3,774,768     | 16,518,948    | 4.38       | 22       | 0.076          |
+| as-Skitter       | 1,696,415     | 11,095,298    | 6.54       | 25       | 0.258          |
+| Amazon           | 334,863       | 925,872       | 2.76       | 44       | 0.397          |
+| StackOverflow    | 2,601,977     | 63,497,050    | 24.40      | —        | —              |
+| **Road**         | **1,965,206** | **2,766,607** | **1.41**   | **849**  | **0.046**      |
+| **MathOverflow** | **24,818**    | **506,550**   | **20.41**  | —        | —              |
+| Enron            | 36,692        | 183,831       | 5.01       | 11       | 0.497          |
+
+Road is an extreme case in this table: with a diameter of 849 and only 1.41 edges per node, edges are spread across a large, mostly empty key space with nearly no local density for ALEX to exploit. MathOverflow combines a small vertex count with high edges per node. The following plots show how differently that concentrates keys.
+
+We compared CDF approximation for graph and KV workloads closely; the empirical distributions for our graph datasets appear in Figure 1.
 
 <div class="post-figure-grid">
 <img src="writing/artifacts/amazon_ecdf.png" alt="Amazon — empirical CDF of edge keys" loading="lazy" />
 <img src="writing/artifacts/orkut_ecdf.png" alt="Orkut — empirical CDF of edge keys" loading="lazy" />
-<img src="writing/artifacts/road_ecdf.png" alt="Road — empirical CDF of edge keys" loading="lazy" />
 <img src="writing/artifacts/mathoverflow_ecdf.png" alt="MathOverflow — empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/road_ecdf.png" alt="Road — empirical CDF of edge keys" loading="lazy" />
 </div>
+
+Figure 1: CDF of bitwise-concatenated edge keys across four datasets
+
+Amazon and Orkut show smooth distributions where ALEX's piecewise-linear models can approximate local structure well. MathOverflow's cliff shape is the worst case for ALEX as nearly all edges are concentrated in a tiny key range while the rest of the space is empty. This will cause ALEX's cost model to over-split and add unnecessary tree depth for one of the smallest datasets we tested. Road's CDF looks linear and ideal, but the extreme lack in local density will cause similar complications for ALEX.
+
+We'll return to these complications from Road and MathOverflow in the results.
 
 # Experimentation
 On the KV side, we benchmarked ALEX against STX (the traditional B+ tree baseline) across common learned-index workloads and parameter sweeps, including dataset-specific runs and repeated experiments.
@@ -70,7 +90,7 @@ For graph algorithms, we implemented the following kernels:
 - 1-Hop query. 
 As well as implementing multithreaded reading by adding OpenMP directives to analyze concurrent performance on these graph analysis algorithms. 
 
-When running BFS and 1-Hop tests we ran into bugs,  segmentation faults for multithreaded ALEX queries.
+When running BFS and 1-Hop tests we ran into bugs, segmentation faults for multithreaded ALEX queries.
 
 For datasets, our graph results spreadsheet tracks runs across graphs including Amazon and Orkut, Live-Journal, Cit-Patents, Road, as-Skitter, StackOverflow, Enron, MathOverflow, fb-wall.
 
@@ -148,11 +168,11 @@ The most likely explanation we came to was sparsity. Both graphs have very few e
 This furthered our growing expectations that RMI-style architectures are a suboptimal approach to handling sparse graphs. They perform poorly when the key distribution is highly irregular, since more node splits increase tree depth and degrades locality. Maybe re-implementing ALEX into a structure that could localize those densely connected spaces could improve the cost model's predictions on where to split child nodes. 
 
 ### Stat Counter overhead
-One detail we found was that when implementing graph algorithms for structures that weren't designed for such data, it's important to track and minimize any overhead on  iterator and lookup code paths. Even the smallest of operations per lookup can significantly decrease performance. 
+One detail we found was that when implementing graph algorithms for structures that weren't designed for such data, it's important to track and minimize any overhead on iterator and lookup code paths. Even the smallest of operations per lookup can significantly decrease performance. 
 
 During experimentation, we use conditions, like #ifdef, to temporarily disable increments like stats_.num_lookups++ from heavily used functions in order to minimize that overhead during measurement.
 
-After disabling those lookup stat updates, we saw a significant improvement in performance for each algorithm, with BFS and PageRank benefited the most. These updates don't impact normal KV performance but can stagnate graph performance which requires millions of iterations over edges each run. 
+After disabling those lookup stat updates, we saw a significant improvement in performance for each algorithm, with BFS and PageRank benefiting the most. These updates don't impact normal KV performance but can stagnate graph performance which requires millions of iterations over edges each run. 
 
 In hindsight, this makes sense, however it was a consideration we didn't take at the time of first experimentation. Constantly iterating on experiments, tracking performance, and reading code helped us figure out the appropriate implementation for graph analysis in a structure meant for key-value workloads. 
 
@@ -178,3 +198,12 @@ Finally, supporting persistent memory datasets is another direction we can go, a
 These mentioned solutions are consistent with where the field has been moving. Learned indexes can be integrated into persistent, disk-based distributed systems like Google's Bigtable, with improved read latency and throughput using a learned CDF model to predict which data block a key lives in. Knowledge graph systems, like Wikidata, stores facts in triples: (subject, predicate, object), which is extremely similar to how we encoded edges into this learned index. Queries on these systems are typically point lookups and short range queries, which is where ALEX_Graph was competitive. 
 
 While CSR-based structures remain the obvious answer for static graph analytics, they are extremely rigid when handling continuous updates. With the rise in demand of highly dynamic graph workloads and large knowledge graphs that prioritize patterned lookups over sequential traversal, specialized learned indices represent a viable architecture for the next generation of data storage built for rapid ingestion and point-query performance.
+
+## Research poster
+
+Poster from our research presentation:
+
+<iframe class="post-pdf-embed" src="writing/artifacts/Research%20Presentation%20-%20Ishaan%20Patel%20%26%20Dhananjay%20Raghu.pptx%20(1).pdf" title="Research presentation poster"></iframe>
+
+<p class="post-pdf-link"><a href="writing/artifacts/Research%20Presentation%20-%20Ishaan%20Patel%20%26%20Dhananjay%20Raghu.pptx%20(1).pdf" target="_blank" rel="noopener">Open poster PDF in a new tab</a></p>
+
