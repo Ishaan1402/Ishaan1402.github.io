@@ -123,15 +123,28 @@ document.addEventListener('DOMContentLoaded', function() {
         return new Date(dateString).toLocaleDateString('en-US', options);
     }
 
+    function wrapPostTables(container) {
+        container.querySelectorAll('table').forEach(function(table) {
+            if (table.parentNode.classList.contains('table-wrapper')) {
+                return;
+            }
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrapper';
+            table.parentNode.insertBefore(wrap, table);
+            wrap.appendChild(table);
+        });
+    }
+
     async function openPost(post) {
         try {
             const response = await fetch(`writing/posts/${post.id}.md`);
             const markdown = await response.text();
-            
+
             postTitle.textContent = post.title;
             postDate.textContent = formatDate(post.date);
-            postBody.innerHTML = marked.parse(markdown);
-            
+            postBody.innerHTML = marked.parse(markdown, { gfm: true, breaks: false });
+            wrapPostTables(postBody);
+
             postModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         } catch (error) {
