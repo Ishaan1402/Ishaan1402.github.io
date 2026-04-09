@@ -600,6 +600,29 @@ section {
     margin-right: auto;
 }
 
+.post-body .post-figure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 18px;
+    margin: 28px 0;
+    align-items: start;
+}
+
+.post-body .post-figure-grid img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    display: block;
+    object-fit: contain;
+}
+
+@media (max-width: 640px) {
+    .post-body .post-figure-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* GFM tables */
 .post-body .table-wrapper {
     width: 100%;

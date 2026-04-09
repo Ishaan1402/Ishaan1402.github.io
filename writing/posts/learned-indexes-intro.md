@@ -47,13 +47,12 @@ This encoding orders edges by the source vertex `u`. In sparse graphs, this crea
 
 We examined very closely the differences in CDF approximation between the graph and KV workloads as well, shown in the following figures.
 
-![Amazon — empirical CDF of edge keys](writing/artifacts/amazon_ecdf.png)
-
-![Orkut — empirical CDF of edge keys](writing/artifacts/orkut_ecdf.png)
-
-![Road — empirical CDF of edge keys](writing/artifacts/road_ecdf.png)
-
-![MathOverflow — empirical CDF of edge keys](writing/artifacts/mathoverflow_ecdf.png)
+<div class="post-figure-grid">
+<img src="writing/artifacts/amazon_ecdf.png" alt="Amazon — empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/orkut_ecdf.png" alt="Orkut — empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/road_ecdf.png" alt="Road — empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/mathoverflow_ecdf.png" alt="MathOverflow — empirical CDF of edge keys" loading="lazy" />
+</div>
 
 # Experimentation
 On the KV side, we benchmarked ALEX against STX (the traditional B+ tree baseline) across common learned-index workloads and parameter sweeps, including dataset-specific runs and repeated experiments.
