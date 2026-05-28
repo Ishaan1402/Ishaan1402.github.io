@@ -20,6 +20,7 @@
             <ul class="nav-menu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#research">Research</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#writing">Writing</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
@@ -110,6 +111,85 @@
                     <div class="highlight-card">
                         <h4>HPC Validation</h4>
                         <p>Conducted independent research leveraging the UNCC High Performance Computing Cluster, validating performance improvements on large-scale SNAP datasets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in" id="crack-seg-card">
+                    <div class="project-content">
+                        <h3 class="project-title">
+                            crack-seg
+                            <span class="project-subtitle">UAV Bridge Crack Segmentation</span>
+                        </h3>
+                        <p class="project-description">
+                            A deep learning system for automated bridge inspections using a custom U-Net. It processes high-resolution UAV imagery via sliding window inference with Gaussian patch blending and tracks damage density, all exposed via a containerized FastAPI endpoint.
+                        </p>
+                        
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">0.68</span>
+                                <span class="stat-label">Dice Score</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">0.52</span>
+                                <span class="stat-label">IoU</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">8K</span>
+                                <span class="stat-label">Max Resolution</span>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="https://github.com/Ishaan1402/crack-seg" target="_blank" class="project-btn">
+                                <i class="fab fa-github"></i> GitHub Code
+                            </a>
+                            <a href="https://huggingface.co/ishaan1402/crack-seg" target="_blank" class="project-btn secondary">
+                                <i class="fas fa-external-link-alt"></i> Hugging Face
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-visual">
+                        <div class="slider-tabs">
+                            <button class="tab-btn active" data-mode="mask">Mask Overlay</button>
+                            <button class="tab-btn" data-mode="heatmap">Density Heatmap</button>
+                        </div>
+                        <div class="slider-container" style="--clip-percent: 50%;">
+                            <!-- Background Image (Raw input) -->
+                            <img src="imgs/crack_input.webp" alt="Raw UAV Bridge Concrete Input" class="slider-img img-background" draggable="false">
+                            
+                            <!-- Foreground Image (Mask or Heatmap) -->
+                            <div class="img-foreground">
+                                <img id="foreground-img" src="imgs/crack_mask.webp" alt="Concrete crack segmentation overlay" class="slider-img" draggable="false">
+                            </div>
+                            
+                            <!-- Slider Separator Line -->
+                            <div class="slider-line">
+                                <div class="slider-handle">
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Transparent Range Input overlay for interactions -->
+                            <input type="range" min="0" max="100" value="50" class="slider-range" aria-label="Concrete crack segmentation overlay slider">
+                        </div>
+                        <div class="slider-instruction">
+                            <i class="fas fa-arrows-alt-h"></i> Drag slider or use arrow keys to compare inputs and outputs
+                        </div>
                     </div>
                 </div>
             </div>

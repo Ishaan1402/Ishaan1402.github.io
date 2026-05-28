@@ -181,5 +181,70 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Projects Section - Interactive Slider and Card Logic
+    const crackSegCard = document.getElementById('crack-seg-card');
+    if (crackSegCard) {
+        const sliderContainer = crackSegCard.querySelector('.slider-container');
+        const sliderRange = crackSegCard.querySelector('.slider-range');
+        const tabBtns = crackSegCard.querySelectorAll('.tab-btn');
+        const foregroundImg = crackSegCard.querySelector('#foreground-img');
+        
+        // 1. Slider Interaction
+        sliderRange.addEventListener('input', function(e) {
+            const value = e.target.value;
+            sliderContainer.style.setProperty('--clip-percent', `${value}%`);
+        });
+
+        // 2. Tab Selection (Mask vs Heatmap)
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent card click trigger
+                
+                // Set active tab
+                tabBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const mode = this.getAttribute('data-mode');
+                
+                // Update images
+                if (mode === 'mask') {
+                    foregroundImg.src = 'imgs/crack_mask.webp';
+                    foregroundImg.alt = 'Concrete crack segmentation overlay';
+                } else if (mode === 'heatmap') {
+                    foregroundImg.src = 'imgs/crack_heatmap.webp';
+                    foregroundImg.alt = 'Concrete crack density heatmap overlay';
+                }
+            });
+        });
+
+        // 3. Stop Propagation on interactive elements in slider to avoid card link trigger
+        const stopPropagationElements = [
+            sliderRange,
+            sliderContainer.querySelector('.slider-handle'),
+            ...crackSegCard.querySelectorAll('.project-btn')
+        ];
+        
+        stopPropagationElements.forEach(el => {
+            if (el) {
+                el.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+
+        // 4. Whole Card Click-Through (except when clicking slider controls or links)
+        crackSegCard.addEventListener('click', function(e) {
+            // Check if user clicked on any interactive child
+            if (
+                e.target.closest('.slider-container') || 
+                e.target.closest('.slider-tabs') || 
+                e.target.closest('a')
+            ) {
+                return;
+            }
+            window.open('https://github.com/Ishaan1402/crack-seg', '_blank');
+        });
+    }
+
     loadPosts();
 });
