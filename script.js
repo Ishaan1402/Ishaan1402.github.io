@@ -187,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const sliderContainer = crackSegCard.querySelector('.slider-container');
         const sliderRange = crackSegCard.querySelector('.slider-range');
         const tabBtns = crackSegCard.querySelectorAll('.tab-btn');
-        const foregroundWebp = crackSegCard.querySelector('#foreground-webp');
         const foregroundImg = crackSegCard.querySelector('#foreground-img');
         
         // 1. Slider Interaction
@@ -207,14 +206,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const mode = this.getAttribute('data-mode');
                 
-                // Update images (supporting WebP with JPG fallback)
+                // Update images
                 if (mode === 'mask') {
-                    foregroundWebp.srcset = 'imgs/crack_mask.webp';
-                    foregroundImg.src = 'imgs/crack_mask.jpg';
+                    foregroundImg.src = 'imgs/crack_mask.webp';
                     foregroundImg.alt = 'Concrete crack segmentation overlay';
                 } else if (mode === 'heatmap') {
-                    foregroundWebp.srcset = 'imgs/crack_heatmap.webp';
-                    foregroundImg.src = 'imgs/crack_heatmap.jpg';
+                    foregroundImg.src = 'imgs/crack_heatmap.webp';
                     foregroundImg.alt = 'Concrete crack density heatmap overlay';
                 }
             });

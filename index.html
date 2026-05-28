@@ -170,16 +170,12 @@
                         </div>
                         <div class="slider-container" style="--clip-percent: 50%;">
                             <!-- Background Image (Raw input) -->
-                            <picture>
-                                <source srcset="imgs/crack_input.webp" type="image/webp">
-                                <img src="imgs/crack_input.jpg" alt="Raw UAV Bridge Concrete Input" class="slider-img img-background" draggable="false">
-                            </picture>
+                            <img src="imgs/crack_input.webp" alt="Raw UAV Bridge Concrete Input" class="slider-img img-background" draggable="false">
                             
                             <!-- Foreground Image (Mask or Heatmap) -->
-                            <picture class="img-foreground">
-                                <source id="foreground-webp" srcset="imgs/crack_mask.webp" type="image/webp">
-                                <img id="foreground-img" src="imgs/crack_mask.jpg" alt="Concrete crack segmentation overlay" class="slider-img" draggable="false">
-                            </picture>
+                            <div class="img-foreground">
+                                <img id="foreground-img" src="imgs/crack_mask.webp" alt="Concrete crack segmentation overlay" class="slider-img" draggable="false">
+                            </div>
                             
                             <!-- Slider Separator Line -->
                             <div class="slider-line">
