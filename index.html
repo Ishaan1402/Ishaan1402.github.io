@@ -21,7 +21,7 @@
 <body>
     <!-- App Dashboard Container -->
     <div class="app-container">
-        
+
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-brand">
@@ -97,14 +97,20 @@
                 <!-- 1. ABOUT PANEL (BENTO HUB) -->
                 <section class="dashboard-panel active" id="panel-about">
                     <div class="bento-grid">
-                        <!-- Hero Welcome Card -->
+                        <!-- Hero Welcome & Bio Card -->
                         <div class="bento-card welcome-card">
                             <h1>Ishaan <span class="highlight">Patel</span></h1>
-                            <p class="tagline">MS Computer Science at NC State <span class="tagline-badge">ML/AI Concentration</span></p>
+                            <p class="tagline">MS Computer Science at NC State <span class="tagline-badge">ML/AI
+                                    Concentration</span></p>
                             <p class="about-lead">
-                                I'm currently pursuing my Master's in Computer Science at NC State University,
-                                with a concentration in Machine Learning and Artificial Intelligence. My background
-                                spans systems engineering, high-performance computing, and enterprise software development.
+                                I'm a software engineer currently pursuing my Master's in CS at NC State with a focus on
+                                machine learning and AI. Before grad school, I built software at Prometheus Group and
+                                Fidelity Investments. My undergrad research at UNC Charlotte was on high-performance
+                                data structures.
+                            </p>
+                            <p class="about-lead-emphasis">
+                                I'm interested in inference and building infrastructure that makes models usable in
+                                production.
                             </p>
                             <div class="about-actions">
                                 <button class="btn btn-primary tab-trigger" data-target="projects">
@@ -116,27 +122,14 @@
                             </div>
                         </div>
 
-                        <!-- Info/Bio Card -->
-                        <div class="bento-card bio-card">
-                            <h3>My Background</h3>
-                            <p>
-                                Prior to graduate school, I worked as a Software Engineer at Prometheus Group and
-                                completed two internships at Fidelity Investments, where I gained hands-on experience
-                                with cloud infrastructure, real-time data pipelines, and production systems.
-                            </p>
-                            <p>
-                                My undergraduate research at UNC Charlotte focused on high-performance data structures,
-                                working with learned indexes and B+ trees.
-                            </p>
-                        </div>
-
                         <!-- "What I'm Doing Now" Bento Card -->
                         <div class="bento-card focus-card">
                             <h3>What I'm Doing Now</h3>
                             <ul class="focus-list">
                                 <li>
                                     <i class="fas fa-laptop-code"></i>
-                                    <span><strong>Building:</strong> ELO-Ranked Pickup Basketball App, Custom MCP Tools</span>
+                                    <span><strong>Building:</strong> ELO-Ranked Pickup Basketball App, Custom MCP
+                                        Tools</span>
                                 </li>
                                 <li>
                                     <i class="fas fa-book-open"></i>
@@ -144,11 +137,13 @@
                                 </li>
                                 <li>
                                     <i class="fas fa-graduation-cap"></i>
-                                    <span><strong>NC State:</strong> Deep Learning Beyond Accuracy, Design & Analysis Of Algorithms</span>
+                                    <span><strong>NC State:</strong> Deep Learning Beyond Accuracy, Design & Analysis Of
+                                        Algorithms</span>
                                 </li>
                                 <li>
                                     <i class="fas fa-coffee"></i>
-                                    <span><strong>Hobbies:</strong> Basketball, Hiking, Cooking, Watching movies, Trying new foods</span>
+                                    <span><strong>Hobbies:</strong> Basketball, Hiking, Cooking, Watching movies, Trying
+                                        new foods</span>
                                 </li>
                             </ul>
                         </div>
@@ -170,10 +165,18 @@
                                     <span class="project-subtitle">UAV Bridge Crack Segmentation</span>
                                 </h3>
                                 <p class="project-description">
-                                    A deep learning system for automated bridge inspections using a custom U-Net. It processes
-                                    high-resolution UAV imagery via sliding window inference with Gaussian patch blending and
+                                    A deep learning system for automated bridge inspections using a custom U-Net. It
+                                    processes
+                                    high-resolution UAV imagery via sliding window inference with Gaussian patch
+                                    blending and
                                     tracks damage density, all exposed via a containerized FastAPI endpoint.
                                 </p>
+
+                                <div class="project-tags">
+                                    <span class="tag">PyTorch</span>
+                                    <span class="tag">FastAPI</span>
+                                    <span class="tag">Docker</span>
+                                </div>
 
                                 <div class="project-stats">
                                     <div class="stat-item">
@@ -190,14 +193,9 @@
                                     </div>
                                 </div>
 
-                                <div class="project-tags">
-                                    <span class="tag">PyTorch</span>
-                                    <span class="tag">FastAPI</span>
-                                    <span class="tag">Docker</span>
-                                </div>
-
                                 <div class="project-links">
-                                    <a href="https://github.com/Ishaan1402/crack-seg" target="_blank" class="project-btn">
+                                    <a href="https://github.com/Ishaan1402/crack-seg" target="_blank"
+                                        class="project-btn">
                                         <i class="fab fa-github"></i> GitHub Code
                                     </a>
                                     <a href="https://huggingface.co/ishaan1402/crack-seg" target="_blank"
@@ -224,7 +222,8 @@
                                     <!-- Foreground Image (Mask or Heatmap) -->
                                     <div class="img-foreground">
                                         <img id="foreground-img" src="imgs/crack_mask.webp"
-                                            alt="Concrete crack segmentation overlay" class="slider-img" draggable="false">
+                                            alt="Concrete crack segmentation overlay" class="slider-img"
+                                            draggable="false">
                                     </div>
 
                                     <!-- Slider Separator Line -->
@@ -239,7 +238,8 @@
                                         aria-label="Concrete crack segmentation overlay slider">
                                 </div>
                                 <div class="slider-instruction">
-                                    <i class="fas fa-arrows-alt-h"></i> Drag slider or use arrow keys to compare inputs and outputs
+                                    <i class="fas fa-arrows-alt-h"></i> Drag slider or use arrow keys to compare inputs
+                                    and outputs
                                 </div>
                             </div>
                         </div>
@@ -249,15 +249,19 @@
                             <div class="project-content">
                                 <h3 class="project-title">
                                     BuoyNet
-                                    <span class="project-subtitle">Edge Deep Compression for Marine Microplastic Classification</span>
+                                    <span class="project-subtitle">Edge Deep Compression for Marine Microplastic
+                                        Classification</span>
                                 </h3>
                                 <div class="project-origin">
                                     <i class="fas fa-university"></i> NC State University · Software-Hardware Codesign
                                 </div>
                                 <p class="project-description">
-                                    Edge ML design study on classifying marine microplastics into 16 morphological categories
-                                    for solar-powered IoT buoy cameras. This study employs Deep Compression to analyze the tradeoffs
-                                    between model accuracy, latency, and model size under simulated Raspberry Pi 4B resource limits.
+                                    Edge ML design study on classifying marine microplastics into 16 morphological
+                                    categories
+                                    for solar-powered IoT buoy cameras. This study employs Deep Compression to analyze
+                                    the tradeoffs
+                                    between model accuracy, latency, and model size under simulated Raspberry Pi 4B
+                                    resource limits.
                                 </p>
 
                                 <div class="project-tags">
@@ -310,9 +314,12 @@
 
                             <div class="project-visual">
                                 <div class="visual-tabs">
-                                    <button class="visual-tab-btn active buoynet-control" data-tab="sparsity">Weight Sparsity</button>
-                                    <button class="visual-tab-btn buoynet-control" data-tab="diagnostics">System Diagnostics</button>
-                                    <button class="visual-tab-btn buoynet-control" data-tab="limits">Scope Limitations</button>
+                                    <button class="visual-tab-btn active buoynet-control" data-tab="sparsity">Weight
+                                        Sparsity</button>
+                                    <button class="visual-tab-btn buoynet-control" data-tab="diagnostics">System
+                                        Diagnostics</button>
+                                    <button class="visual-tab-btn buoynet-control" data-tab="limits">Scope
+                                        Limitations</button>
                                 </div>
 
                                 <div class="visual-panel-container">
@@ -321,12 +328,15 @@
                                         <div class="canvas-container">
                                             <canvas id="sparsity-canvas"></canvas>
                                             <div class="canvas-overlay">
-                                                <div class="overlay-row">Sparsity Format: <span id="sparsity-format">Dense Checkpoint</span></div>
-                                                <div class="overlay-row">Bit Precision: <span id="precision-format">32-bit Float</span></div>
+                                                <div class="overlay-row">Sparsity Format: <span
+                                                        id="sparsity-format">Dense Checkpoint</span></div>
+                                                <div class="overlay-row">Bit Precision: <span
+                                                        id="precision-format">32-bit Float</span></div>
                                             </div>
                                         </div>
                                         <div class="slider-instruction">
-                                            <i class="fas fa-info-circle"></i> Slide left panel to simulate weight pruning & quantization
+                                            <i class="fas fa-info-circle"></i> Slide left panel to simulate weight
+                                            pruning & quantization
                                         </div>
                                     </div>
 
@@ -335,7 +345,8 @@
                                         <div class="diagnostics-container">
                                             <div class="diag-header">
                                                 <div class="diag-status-badge status-critical" id="diag-status">
-                                                    <i class="fas fa-exclamation-triangle pulse"></i> DEPLOYMENT CRITICAL
+                                                    <i class="fas fa-exclamation-triangle pulse"></i> DEPLOYMENT
+                                                    CRITICAL
                                                 </div>
                                                 <div class="diag-title">Buoy IoT Telemetry</div>
                                             </div>
@@ -374,14 +385,18 @@
                                             <div class="diag-console">
                                                 <div class="console-header">Console Output Log</div>
                                                 <div class="console-body" id="diag-log">
-                                                    <div class="log-line log-critical">[CRITICAL] Payload size (5.98 MB) exceeds LoRaWAN max session budget (4.00 MB) by +49.5%.</div>
-                                                    <div class="log-line log-warning">[WARN] Low CPU idle time; active duration (370.4 ms) will cause heat buildup.</div>
-                                                    <div class="log-line log-critical">[CRITICAL] Battery usage rate exceeds solar recharge; depletion in 4.2 days.</div>
+                                                    <div class="log-line log-critical">[CRITICAL] Payload size (5.98 MB)
+                                                        exceeds LoRaWAN max session budget (4.00 MB) by +49.5%.</div>
+                                                    <div class="log-line log-warning">[WARN] Low CPU idle time; active
+                                                        duration (370.4 ms) will cause heat buildup.</div>
+                                                    <div class="log-line log-critical">[CRITICAL] Battery usage rate
+                                                        exceeds solar recharge; depletion in 4.2 days.</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="slider-instruction">
-                                            <i class="fas fa-info-circle"></i> Slide left panel to observe edge resource diagnostics
+                                            <i class="fas fa-info-circle"></i> Slide left panel to observe edge resource
+                                            diagnostics
                                         </div>
                                     </div>
 
@@ -392,15 +407,20 @@
                                             <ul>
                                                 <li>
                                                     <strong>Not Field Deployed:</strong>
-                                                    BuoyNet is an IoT evaluation and viability study. It has not been tested in open water or on a physical buoy.
+                                                    BuoyNet is an IoT evaluation and viability study. It has not been
+                                                    tested in open water or on a physical buoy.
                                                 </li>
                                                 <li>
                                                     <strong>Simulated Edge Metrics:</strong>
-                                                    Latency and energy numbers are modeled from Colab timing benchmarks and scaled for Raspberry Pi 4B rather than direct hardware telemetry.
+                                                    Latency and energy numbers are modeled from Colab timing benchmarks
+                                                    and scaled for Raspberry Pi 4B rather than direct hardware
+                                                    telemetry.
                                                 </li>
                                                 <li>
                                                     <strong>Synthetic Domain Shift:</strong>
-                                                    Robustness stress tests use transformations replicating turbidity, biofouling, and dim lighting on held-out splits rather than real underwater streams.
+                                                    Robustness stress tests use transformations replicating turbidity,
+                                                    biofouling, and dim lighting on held-out splits rather than real
+                                                    underwater streams.
                                                 </li>
                                             </ul>
                                         </div>
@@ -425,7 +445,7 @@
                 <!-- 3. EXPERIENCE & SKILLS PANEL -->
                 <section class="dashboard-panel" id="panel-experience">
                     <div class="experience-skills-layout">
-                        
+
                         <!-- Left Column: Timeline -->
                         <div class="experience-column">
                             <div class="section-header">
@@ -456,8 +476,10 @@
                                         <h3>Prometheus Group</h3>
                                         <h4>Software Engineer</h4>
                                         <ul>
-                                            <li>Implemented features and resolved defects across C# .NET and React services</li>
-                                            <li>Refactored legacy components following Domain-Driven Design principles</li>
+                                            <li>Implemented features and resolved defects across C# .NET and React
+                                                services</li>
+                                            <li>Refactored legacy components following Domain-Driven Design principles
+                                            </li>
                                             <li>Built automated testing framework integrated into CI/CD pipeline</li>
                                             <li>Reduced sprint regression time by 40%</li>
                                             <li>Guided junior developers on architecture and code quality</li>
@@ -488,19 +510,26 @@
                                             <li>Achieved 65% improvement in query time</li>
                                             <li>Conducted research on UNCC HPC Cluster with SNAP datasets</li>
                                         </ul>
-                                        <div class="research-summary-card" style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 15px;">
+                                        <div class="research-summary-card"
+                                            style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 15px;">
                                             <h5>High-Performance Data Structures for Dynamic Graph Workloads</h5>
                                             <p>
-                                                During my undergraduate research at UNC Charlotte's Data Intelligence Research Laboratory,
-                                                I specialized in optimizing high-performance data structures for dynamic graph workloads.
+                                                During my undergraduate research at UNC Charlotte's Data Intelligence
+                                                Research Laboratory,
+                                                I specialized in optimizing high-performance data structures for dynamic
+                                                graph workloads.
                                             </p>
                                             <p>
-                                                My work focused on implementing and optimizing Microsoft's ALEX learned index and the
-                                                industry-leading STX B+ tree using C++. I accelerated graph analysis algorithms including
+                                                My work focused on implementing and optimizing Microsoft's ALEX learned
+                                                index and the
+                                                industry-leading STX B+ tree using C++. I accelerated graph analysis
+                                                algorithms including
                                                 PageRank and Breadth First Search through multithreaded implementations.
                                             </p>
                                             <div class="mini-stat-highlight">
-                                                <i class="fas fa-bolt"></i> <strong>65% Improvement</strong> in query time over baseline methods, validated on SNAP datasets using the UNCC High Performance Computing Cluster
+                                                <i class="fas fa-bolt"></i> <strong>65% Improvement</strong> in query
+                                                time over baseline methods, validated on SNAP datasets using the UNCC
+                                                High Performance Computing Cluster
                                             </div>
                                         </div>
                                     </div>
@@ -511,7 +540,8 @@
                                         <h3>Fidelity Investments</h3>
                                         <h4>Software Engineer Intern</h4>
                                         <ul>
-                                            <li>Built REST API endpoints and AWS Lambda functions for Fidelity Bloom</li>
+                                            <li>Built REST API endpoints and AWS Lambda functions for Fidelity Bloom
+                                            </li>
                                             <li>Supported 10,000+ daily users with 99.9% uptime</li>
                                             <li>Automated infrastructure using AWS CloudFormation</li>
                                             <li>Implemented CI/CD pipeline using Jenkins and UrbanCode Deploy</li>
@@ -532,13 +562,20 @@
                                 <div class="skill-group-card">
                                     <h4>Languages</h4>
                                     <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-python"></i> Python</span>
-                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">C++</i> C++</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-java"></i> Java</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="dev-icon">C</i> C</span>
-                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">C#</i> C#</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-js-square"></i> JavaScript</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-database"></i> SQL</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fab fa-python"></i>
+                                            Python</span>
+                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">C++</i>
+                                            C++</span>
+                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-java"></i>
+                                            Java</span>
+                                        <span class="skill-pill" data-level="intermediate"><i class="dev-icon">C</i>
+                                            C</span>
+                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">C#</i>
+                                            C#</span>
+                                        <span class="skill-pill" data-level="intermediate"><i
+                                                class="fab fa-js-square"></i> JavaScript</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fas fa-database"></i>
+                                            SQL</span>
                                     </div>
                                 </div>
 
@@ -546,12 +583,18 @@
                                 <div class="skill-group-card">
                                     <h4>Machine Learning & AI</h4>
                                     <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-fire"></i> PyTorch</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-camera-retro"></i> OpenCV</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-chart-line"></i> NumPy</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-table"></i> Pandas</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-brain"></i> Scikit-learn</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-project-diagram"></i> Transformers</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fas fa-fire"></i>
+                                            PyTorch</span>
+                                        <span class="skill-pill" data-level="intermediate"><i
+                                                class="fas fa-camera-retro"></i> OpenCV</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fas fa-chart-line"></i>
+                                            NumPy</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fas fa-table"></i>
+                                            Pandas</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fas fa-brain"></i>
+                                            Scikit-learn</span>
+                                        <span class="skill-pill" data-level="intermediate"><i
+                                                class="fas fa-project-diagram"></i> Transformers</span>
                                     </div>
                                 </div>
 
@@ -559,13 +602,20 @@
                                 <div class="skill-group-card">
                                     <h4>Cloud & Infrastructure</h4>
                                     <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-aws"></i> AWS</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-microsoft"></i> Azure</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-server"></i> PostgreSQL</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-docker"></i> Docker</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-dharmachakra"></i> Kubernetes</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-jenkins"></i> Jenkins</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-linux"></i> Linux</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fab fa-aws"></i>
+                                            AWS</span>
+                                        <span class="skill-pill" data-level="intermediate"><i
+                                                class="fab fa-microsoft"></i> Azure</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fas fa-server"></i>
+                                            PostgreSQL</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fab fa-docker"></i>
+                                            Docker</span>
+                                        <span class="skill-pill" data-level="intermediate"><i
+                                                class="fas fa-dharmachakra"></i> Kubernetes</span>
+                                        <span class="skill-pill" data-level="intermediate"><i
+                                                class="fab fa-jenkins"></i> Jenkins</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fab fa-linux"></i>
+                                            Linux</span>
                                     </div>
                                 </div>
 
@@ -573,13 +623,20 @@
                                 <div class="skill-group-card">
                                     <h4>Frameworks & Tools</h4>
                                     <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">.NET</i> .NET / ASP.NET</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-react"></i> React</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-leaf"></i> Spring Boot</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-bolt"></i> FastAPI</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-chart-bar"></i> Grafana</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-tools"></i> CMake</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-git-alt"></i> Git</span>
+                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">.NET</i> .NET /
+                                            ASP.NET</span>
+                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-react"></i>
+                                            React</span>
+                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-leaf"></i>
+                                            Spring Boot</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fas fa-bolt"></i>
+                                            FastAPI</span>
+                                        <span class="skill-pill" data-level="intermediate"><i
+                                                class="fas fa-chart-bar"></i> Grafana</span>
+                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-tools"></i>
+                                            CMake</span>
+                                        <span class="skill-pill" data-level="expert"><i class="fab fa-git-alt"></i>
+                                            Git</span>
                                     </div>
                                 </div>
                             </div>
@@ -639,9 +696,9 @@
                             <div class="contact-avatar-box">
                                 <i class="fas fa-paper-plane contact-icon"></i>
                             </div>
-                             <h2>Get In Touch</h2>
-                             <p>Feel free to reach out for collaboration, opportunities, or if you just wanna chat.</p>
-                            
+                            <h2>Get In Touch</h2>
+                            <p>Feel free to reach out for collaboration, opportunities, or if you just wanna chat.</p>
+
                             <div class="contact-info-list">
                                 <a href="mailto:ishbhagat02@gmail.com" class="contact-link-item">
                                     <i class="fas fa-envelope"></i>

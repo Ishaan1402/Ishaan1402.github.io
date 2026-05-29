@@ -399,7 +399,7 @@ a:focus-visible {
 
 /* Specific Bento Cards */
 .welcome-card {
-    grid-column: span 2;
+    grid-column: span 3;
     justify-content: flex-start;
     background: var(--card-bg);
     border-color: rgba(46, 139, 87, 0.2);
@@ -441,6 +441,13 @@ a:focus-visible {
 .welcome-card .about-lead {
     font-size: 18px;
     color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.welcome-card .about-lead-emphasis {
+    font-size: 18px;
+    color: var(--near-black);
     line-height: 1.7;
     margin-bottom: 30px;
 }
@@ -1699,12 +1706,8 @@ a:focus-visible {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .welcome-card, .bio-card, .stats-card, .focus-card {
+    .welcome-card, .focus-card {
         grid-column: span 2;
-    }
-    
-    .bio-card {
-        grid-row: auto;
     }
 
     .focus-list {
@@ -1756,7 +1759,7 @@ a:focus-visible {
         gap: 20px;
     }
 
-    .bento-card, .welcome-card, .bio-card, .stats-card, .focus-card {
+    .bento-card, .welcome-card, .focus-card {
         grid-column: span 1;
         grid-row: auto;
         padding: 24px 20px;
@@ -1770,7 +1773,8 @@ a:focus-visible {
         font-size: 16px;
     }
 
-    .welcome-card .about-lead {
+    .welcome-card .about-lead,
+    .welcome-card .about-lead-emphasis {
         font-size: 15px;
     }
 
