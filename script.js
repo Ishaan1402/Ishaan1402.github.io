@@ -1,80 +1,88 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const navbar = document.querySelector('.navbar');
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const panels = document.querySelectorAll('.dashboard-panel');
+    const sidebar = document.querySelector('.sidebar');
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
 
-    // Navbar scroll effect
-    function handleScroll() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+    // Placeholders for BuoyNet canvas start/stop, to be overridden by the BuoyNet script block
+    let startSparsityAnimation = () => {};
+    let stopSparsityAnimation = () => {};
+
+    // Tab routing function
+    function switchTab(tabId) {
+        // Toggle sidebar active state off on mobile
+        if (sidebar && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            if (mobileToggle) mobileToggle.classList.remove('active');
+            if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+        }
+
+        // Update nav active styles
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            if (btn.getAttribute('data-tab') === tabId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Update panel active states
+        panels.forEach(panel => {
+            if (panel.id === `panel-${tabId}`) {
+                panel.classList.add('active');
+                // Scroll container back to top
+                const mainContent = document.querySelector('.main-content');
+                if (mainContent) mainContent.scrollTop = 0;
+            } else {
+                panel.classList.remove('active');
+            }
+        });
+
+        // Performance management: toggle BuoyNet animations depending on tab state
+        if (tabId === 'projects') {
+            startSparsityAnimation();
         } else {
-            navbar.classList.remove('scrolled');
+            stopSparsityAnimation();
         }
     }
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    // Mobile menu toggle
-    menuToggle.addEventListener('click', function () {
-        navMenu.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    });
-
-    // Close mobile menu on link click
-    navLinks.forEach(link => {
-        link.addEventListener('click', function () {
-            navMenu.classList.remove('active');
-            menuToggle.classList.remove('active');
-        });
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+    // Attach click listeners to sidebar buttons
+    document.querySelectorAll('.nav-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const tabId = this.getAttribute('data-tab');
+            if (tabId) {
+                switchTab(tabId);
             }
         });
     });
 
-    // Scroll animations using Intersection Observer
-    const fadeElements = document.querySelectorAll('.fade-in');
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+    // Attach click listeners to bento card triggers (About Hub)
+    document.querySelectorAll('.tab-trigger').forEach(trigger => {
+        trigger.addEventListener('click', function () {
+            const targetTab = this.getAttribute('data-target');
+            if (targetTab) {
+                switchTab(targetTab);
             }
         });
-    }, observerOptions);
-
-    fadeElements.forEach(element => {
-        observer.observe(element);
     });
 
-    // Add stagger effect to timeline items and skill categories
-    const staggerElements = document.querySelectorAll('.timeline-item, .skill-category, .highlight-card');
-    staggerElements.forEach((element, index) => {
-        element.style.transitionDelay = `${index * 0.1}s`;
-    });
+    // Mobile sidebar toggle
+    if (mobileToggle && sidebar) {
+        mobileToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+            this.classList.toggle('active');
+            if (sidebarOverlay) sidebarOverlay.classList.toggle('active');
+        });
+    }
+
+    // Close mobile sidebar on overlay click
+    if (sidebarOverlay && sidebar && mobileToggle) {
+        sidebarOverlay.addEventListener('click', function () {
+            sidebar.classList.remove('active');
+            mobileToggle.classList.remove('active');
+            this.classList.remove('active');
+        });
+    }
 
     // Writing Section - Load and display posts
     const postsGrid = document.getElementById('posts-grid');
@@ -98,13 +106,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderPosts(posts) {
+        if (!postsGrid) return;
         postsGrid.innerHTML = '';
 
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         posts.forEach(post => {
             const card = document.createElement('div');
-            card.className = 'post-card fade-in';
+            card.className = 'post-card';
             card.innerHTML = `
                 <h3>${post.title}</h3>
                 <time>${formatDate(post.date)}</time>
@@ -113,8 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
             card.addEventListener('click', () => openPost(post));
             postsGrid.appendChild(card);
-
-            observer.observe(card);
         });
     }
 
@@ -167,16 +174,18 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.overflow = '';
     }
 
-    postModalClose.addEventListener('click', closeModal);
+    if (postModalClose) postModalClose.addEventListener('click', closeModal);
 
-    postModal.addEventListener('click', function (e) {
-        if (e.target === postModal) {
-            closeModal();
-        }
-    });
+    if (postModal) {
+        postModal.addEventListener('click', function (e) {
+            if (e.target === postModal) {
+                closeModal();
+            }
+        });
+    }
 
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && postModal.classList.contains('active')) {
+        if (e.key === 'Escape' && postModal && postModal.classList.contains('active')) {
             closeModal();
         }
     });
@@ -609,18 +618,18 @@ document.addEventListener('DOMContentLoaded', function () {
             animationFrameId = requestAnimationFrame(drawSparsity);
         }
 
-        function startSparsityAnimation() {
+        startSparsityAnimation = function() {
             if (!animationFrameId) {
                 animationFrameId = requestAnimationFrame(drawSparsity);
             }
-        }
+        };
 
-        function stopSparsityAnimation() {
+        stopSparsityAnimation = function() {
             if (animationFrameId) {
                 cancelAnimationFrame(animationFrameId);
                 animationFrameId = null;
             }
-        }
+        };
 
         // Initialize weight template & canvas render
         initWeights();
