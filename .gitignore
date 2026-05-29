@@ -27,3 +27,6 @@ npm-debug.log*
 # Environment
 .env
 .env.local
+
+# Private/Internal Reference Documents
+docs/AI Startup Strategy and Career Path.pdf
