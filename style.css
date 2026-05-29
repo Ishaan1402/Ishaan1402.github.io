@@ -78,7 +78,7 @@ a {
 /* Sidebar Navigation */
 .sidebar {
     width: 280px;
-    background: var(--near-black);
+    background: #0e1221;
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
@@ -207,7 +207,6 @@ a {
     text-align: center;
 }
 
-/* Mobile Header */
 .mobile-header {
     display: none;
     position: fixed;
@@ -215,7 +214,7 @@ a {
     left: 0;
     width: 100%;
     height: 60px;
-    background: var(--near-black);
+    background: #040a1d;
     border-bottom: 1px solid var(--border-color);
     padding: 0 20px;
     justify-content: space-between;
