@@ -276,6 +276,7 @@ a {
 .main-content {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden; /* Lock horizontal scroll to prevent page-level wiggling */
     padding: 60px;
     background: var(--light-bg);
     height: 100%;
@@ -1742,7 +1743,7 @@ a:focus-visible {
     }
 
     .main-content {
-        padding: 90px 20px 40px;
+        padding: 90px 15px 40px;
     }
 
     .section-header {
@@ -1762,7 +1763,7 @@ a:focus-visible {
     .bento-card, .welcome-card, .focus-card {
         grid-column: span 1;
         grid-row: auto;
-        padding: 24px 20px;
+        padding: 24px 15px;
     }
 
     .welcome-card h1 {
@@ -1802,7 +1803,7 @@ a:focus-visible {
 
     .project-card {
         grid-template-columns: 1fr;
-        padding: 25px 20px;
+        padding: 25px 15px;
         gap: 25px;
     }
 
@@ -1827,7 +1828,7 @@ a:focus-visible {
     }
 
     .timeline-content {
-        padding: 24px 20px;
+        padding: 24px 15px;
     }
 
     .timeline-content h3 {
@@ -1843,7 +1844,7 @@ a:focus-visible {
     }
 
     .skill-group-card {
-        padding: 24px 20px;
+        padding: 24px 15px;
     }
 
     .skill-group-card h4 {
@@ -1856,7 +1857,7 @@ a:focus-visible {
     }
 
     .resume-card-box {
-        padding: 24px 20px;
+        padding: 24px 15px;
     }
 
     .resume-card-box h3 {
@@ -1869,7 +1870,7 @@ a:focus-visible {
     }
 
     .contact-card {
-        padding: 35px 20px;
+        padding: 35px 15px;
     }
 
     .contact-card h2 {
@@ -1893,7 +1894,7 @@ a:focus-visible {
     }
 
     .post-card {
-        padding: 24px 20px;
+        padding: 24px 15px;
     }
 
     .post-card h3 {
