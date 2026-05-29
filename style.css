@@ -275,6 +275,7 @@ a {
 /* Main Content Stage */
 .main-content {
     flex: 1;
+    min-width: 0; /* Allow the flex container to shrink below its children's content width */
     overflow-y: auto;
     overflow-x: hidden; /* Lock horizontal scroll to prevent page-level wiggling */
     padding: 60px;
@@ -1805,6 +1806,7 @@ a:focus-visible {
         grid-template-columns: 1fr;
         padding: 25px 15px;
         gap: 25px;
+        min-width: 0; /* Prevent grid items from overflowing parent on narrow mobile viewports */
     }
 
     .project-title {
@@ -1821,10 +1823,14 @@ a:focus-visible {
 
     .project-content {
         order: 2;
+        min-width: 0;
+        width: 100%;
     }
 
     .project-visual {
         order: 1;
+        min-width: 0;
+        width: 100%;
     }
 
     .timeline-content {
@@ -1939,6 +1945,11 @@ a:focus-visible {
     .stat-highlight {
         flex-direction: column;
         text-align: center;
+    }
+
+    /* Stack project links full width on small screens to prevent overflow */
+    .project-links .project-btn {
+        flex: 1 1 100%;
     }
 }
 
@@ -2508,6 +2519,9 @@ a:focus-visible {
 @media (max-width: 768px) {
     .visual-tabs {
         padding-bottom: 4px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
     }
 
     .visual-tab-btn {
@@ -2525,6 +2539,23 @@ a:focus-visible {
 
     .canvas-container {
         min-height: 150px;
+    }
+
+    /* Prevent aspect-ratio from forcing a wide layout based on vertical height content on mobile */
+    .visual-panel-container {
+        aspect-ratio: auto;
+    }
+
+    /* Stack diagnostic status and title on mobile to prevent overflow */
+    .diag-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    /* Slightly smaller padding on mobile to give ticks more horizontal space */
+    .compression-controller {
+        padding: 15px 12px;
     }
 
     /* Project Links Layout responsive enhancement for crack-seg links */
