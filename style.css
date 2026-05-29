@@ -340,7 +340,7 @@ a:focus-visible {
 }
 
 .section-header {
-    margin-bottom: 45px;
+    margin-bottom: 24px;
 }
 
 .section-header h2 {
@@ -556,7 +556,7 @@ a:focus-visible {
 
 .focus-list li {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
     font-size: 16px;
     color: var(--near-black);
@@ -565,11 +565,13 @@ a:focus-visible {
     background: rgba(46, 139, 87, 0.04);
     border: 1px solid rgba(46, 139, 87, 0.1);
     border-radius: 10px;
+    line-height: 1.4;
 }
 
 .focus-list li i {
     color: var(--primary);
     font-size: 18px;
+    margin-top: 3px;
 }
 
 /* Projects Section */
@@ -1742,7 +1744,7 @@ a:focus-visible {
     }
 
     .section-header {
-        margin-bottom: 25px;
+        margin-bottom: 16px;
     }
 
     .section-header h2 {
