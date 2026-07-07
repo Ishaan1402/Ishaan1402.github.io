@@ -124,22 +124,48 @@
                             <ul class="focus-list">
                                 <li>
                                     <i class="fas fa-laptop-code"></i>
-                                    <span><strong>Building:</strong> ELO-Ranked Pickup Basketball App, HP-Tuning Assistant MCP
-                                        Server</span>
+                                    <div>
+                                        <strong>Building:</strong>
+                                        <ul class="focus-sublist">
+                                            <li class="done">Pathfinder</li>
+                                            <li>ELO-Ranked Pickup Basketball App</li>
+                                        </ul>
+                                    </div>
                                 </li>
                                 <li>
                                     <i class="fas fa-book-open"></i>
-                                    <span><strong>Reading:</strong> Player of Games, The Shock Doctrine</span>
+                                    <div>
+                                        <strong>Reading:</strong>
+                                        <ul class="focus-sublist">
+                                            <li class="done">The Lies of Locke Lamora</li>
+                                            <li class="done">Project Hail Mary</li>
+                                            <li>Steve Jobs</li>
+                                            <li>The Shock Doctrine</li>
+                                        </ul>
+                                    </div>
                                 </li>
                                 <li>
                                     <i class="fas fa-graduation-cap"></i>
-                                    <span><strong>NC State:</strong> Deep Learning Beyond Accuracy, Design & Analysis Of
-                                        Algorithms</span>
+                                    <div>
+                                        <strong>NC State:</strong>
+                                        <ul class="focus-sublist">
+                                            <li>Deep Learning Beyond Accuracy</li>
+                                            <li>Design & Analysis Of Algorithms</li>
+                                        </ul>
+                                    </div>
                                 </li>
                                 <li>
                                     <i class="fas fa-coffee"></i>
-                                    <span><strong>Hobbies:</strong> Basketball, Hiking, Cooking, Watching movies, Trying
-                                        new foods</span>
+                                    <div>
+                                        <strong>Hobbies:</strong>
+                                        <ul class="focus-sublist">
+                                            <li>Basketball</li>
+                                            <li>Hiking</li>
+                                            <li>Cooking</li>
+                                            <li>Watching movies</li>
+                                            <li>Trying new foods</li>
+                                        </ul>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -153,6 +179,46 @@
                     </div>
 
                     <div class="projects-grid">
+                        <!-- Pathfinder Card -->
+                        <div class="project-card" id="pathfinder-card">
+                            <div class="project-content">
+                                <h3 class="project-title">
+                                    pathfinder
+                                    <span class="project-subtitle">Decoupled HPO Supervisor</span>
+                                </h3>
+                                <p class="project-description">
+                                    Tuning a model means setting search spaces, reading terminal logs, and debugging 
+                                    why a trial crashed, while leaving the GPU idle. The AI agent open in your IDE 
+                                    can't see any of this data. Pathfinder handles concurrency, visualizes telemetry, 
+                                    and gives your IDE agent structured context to write configs and refine assumptions 
+                                    as you go. The agent never touches the suggest path, keeping the sampler deterministic. 
+                                </p>
+
+                                <div class="project-tags">
+                                    <span class="tag">Python</span>
+                                    <span class="tag">FastAPI</span>
+                                    <span class="tag">Optuna</span>
+                                    <span class="tag">MCP</span>
+                                    <span class="tag">SQLite</span>
+                                </div>
+
+                                <div class="project-links">
+                                    <a href="https://github.com/Ishaan1402/pathfinder" target="_blank"
+                                        class="project-btn">
+                                        <i class="fab fa-github"></i> GitHub Repo
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-visual">
+                                <div class="chart-wrapper">
+                                    <img src="imgs/hpo_comparison_chart.svg"
+                                        alt="Dice Score comparison across completed HPO trials on bridge crack UNet"
+                                        style="max-width: 100%; height: auto; border-radius: 4px;">
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- UAV Crack-Seg Card -->
                         <div class="project-card" id="crack-seg-card">
                             <div class="project-content">
@@ -162,25 +228,25 @@
                                 </h3>
                                 <p class="project-description">
                                     A deep learning system for automated bridge inspections using a custom U-Net. It
-                                    processes
-                                    high-resolution UAV imagery via sliding window inference with Gaussian patch
-                                    blending and
-                                    tracks damage density, all exposed via a containerized FastAPI endpoint.
+                                    processes high-resolution UAV imagery via sliding window inference with Gaussian patch
+                                    blending. Model hyperparameters were optimized using the Pathfinder agentic HPO framework,
+                                    improving the validation Dice score to 0.747 in just 2 optimization iterations.
                                 </p>
 
                                 <div class="project-tags">
                                     <span class="tag">PyTorch</span>
                                     <span class="tag">FastAPI</span>
                                     <span class="tag">Docker</span>
+                                    <span class="tag tag-accent"><i class="fas fa-brain"></i> +9.85% Dice (via Pathfinder)</span>
                                 </div>
 
                                 <div class="project-stats">
                                     <div class="stat-item">
-                                        <span class="stat-value">0.68</span>
+                                        <span class="stat-value">0.747</span>
                                         <span class="stat-label">Dice Score</span>
                                     </div>
                                     <div class="stat-item">
-                                        <span class="stat-value">0.52</span>
+                                        <span class="stat-value">0.596</span>
                                         <span class="stat-label">IoU</span>
                                     </div>
                                     <div class="stat-item">

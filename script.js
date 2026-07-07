@@ -639,3 +639,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loadPosts();
 });
+
+document.addEventListener('DOMContentLoaded', initLightbox);
+
+function initLightbox() {
+    const chartWrapper = document.querySelector('.chart-wrapper');
+    if (!chartWrapper) return;
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'chart-lightbox';
+    lightbox.innerHTML = '<span class="chart-lightbox-close">&times;</span>';
+    const lightboxImg = document.createElement('img');
+    lightboxImg.src = 'imgs/hpo_comparison_chart.svg';
+    lightboxImg.alt = 'Dice Score comparison across completed HPO trials on bridge crack UNet';
+    lightbox.appendChild(lightboxImg);
+    document.body.appendChild(lightbox);
+
+    chartWrapper.addEventListener('click', (e) => {
+        e.stopPropagation();
+        lightbox.classList.add('active');
+    });
+    lightbox.addEventListener('click', (e) => {
+        if (e.target !== lightboxImg) lightbox.classList.remove('active');
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') lightbox.classList.remove('active');
+    });
+}
