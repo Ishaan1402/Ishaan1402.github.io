@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const sidebarOverlay = document.getElementById('sidebar-overlay');
 
     // Placeholders for BuoyNet canvas start/stop, to be overridden by the BuoyNet script block
-    let startSparsityAnimation = () => {};
-    let stopSparsityAnimation = () => {};
+    let startSparsityAnimation = null;
+    let stopSparsityAnimation = null;
 
     // Tab routing function
     function switchTab(tabId) {
@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.nav-btn').forEach(btn => {
             if (btn.getAttribute('data-tab') === tabId) {
                 btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
             } else {
                 btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
             }
         });
 
@@ -40,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Performance management: toggle BuoyNet animations depending on tab state
         if (tabId === 'projects') {
-            startSparsityAnimation();
+            startSparsityAnimation?.();
         } else {
-            stopSparsityAnimation();
+            stopSparsityAnimation?.();
         }
     }
 
@@ -69,8 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mobile sidebar toggle
     if (mobileToggle && sidebar) {
         mobileToggle.addEventListener('click', function () {
-            sidebar.classList.toggle('active');
+            const expanded = sidebar.classList.toggle('active');
             this.classList.toggle('active');
+            this.setAttribute('aria-expanded', expanded);
             if (sidebarOverlay) sidebarOverlay.classList.toggle('active');
         });
     }
@@ -80,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebarOverlay.addEventListener('click', function () {
             sidebar.classList.remove('active');
             mobileToggle.classList.remove('active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
             this.classList.remove('active');
         });
     }
@@ -93,15 +97,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const postBody = document.getElementById('post-body');
 
     async function loadPosts() {
+        if (!postsGrid) return;
         try {
             const response = await fetch('writing/posts.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
 
             if (data.posts && data.posts.length > 0) {
                 renderPosts(data.posts);
+            } else {
+                postsGrid.innerHTML = '<div class="no-posts"><i class="fas fa-pen-fancy"></i><p>No posts yet.</p></div>';
             }
         } catch (error) {
-            console.log('No posts found or error loading posts:', error);
+            console.error('Failed to load posts:', error);
+            postsGrid.innerHTML = '<div class="no-posts"><i class="fas fa-exclamation-circle"></i><p>Could not load posts.</p></div>';
         }
     }
 
@@ -130,6 +139,70 @@ document.addEventListener('DOMContentLoaded', function () {
         return new Date(dateString).toLocaleDateString('en-US', options);
     }
 
+    /* --- Focus List (What I'm Doing Now) --- */
+    async function loadFocus() {
+        const focusList = document.getElementById('focus-list');
+        if (!focusList) return;
+        try {
+            const response = await fetch('data/focus.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+
+            focusList.innerHTML = '';
+            data.categories.forEach(cat => {
+                const li = document.createElement('li');
+                const subItems = cat.items.map(item =>
+                    `<li${item.done ? ' class="done"' : ''}>${item.text}</li>`
+                ).join('');
+
+                li.innerHTML = `
+                    <i class="fas ${cat.icon}"></i>
+                    <div>
+                        <strong>${cat.label}:</strong>
+                        <ul class="focus-sublist">${subItems}</ul>
+                    </div>
+                `;
+                focusList.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Failed to load focus data:', error);
+            focusList.innerHTML = '<li class="focus-error"><i class="fas fa-exclamation-circle"></i> Could not load focus items.</li>';
+        }
+    }
+
+    /* --- Crack-Seg Metrics & Tags --- */
+    async function loadCrackSegData() {
+        const statsContainer = document.getElementById('crackseg-stats');
+        const tagsContainer = document.getElementById('crackseg-tags');
+        if (!statsContainer && !tagsContainer) return;
+        try {
+            const response = await fetch('data/projects.json');
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            const cs = data.crackSeg;
+            if (!cs) return;
+
+            if (tagsContainer && cs.tags) {
+                tagsContainer.innerHTML = cs.tags.map(t => {
+                    const cls = t.accent ? 'tag tag-accent' : 'tag';
+                    const icon = t.icon ? `<i class="fas ${t.icon}"></i> ` : '';
+                    return `<span class="${cls}">${icon}${t.text}</span>`;
+                }).join('');
+            }
+
+            if (statsContainer && cs.stats) {
+                statsContainer.innerHTML = cs.stats.map(s =>
+                    `<div class="stat-item">
+                        <span class="stat-value">${s.value}</span>
+                        <span class="stat-label">${s.label}</span>
+                    </div>`
+                ).join('');
+            }
+        } catch (error) {
+            console.error('Failed to load project data:', error);
+        }
+    }
+
     function wrapPostTables(container) {
         container.querySelectorAll('table').forEach(function (table) {
             if (table.parentNode.classList.contains('table-wrapper')) {
@@ -145,6 +218,8 @@ document.addEventListener('DOMContentLoaded', function () {
     async function openPost(post) {
         try {
             const response = await fetch(`writing/posts/${post.id}.md`);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
             const markdown = await response.text();
 
             postTitle.textContent = post.title;
@@ -166,6 +241,11 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.style.overflow = 'hidden';
         } catch (error) {
             console.error('Error loading post:', error);
+            postTitle.textContent = post.title;
+            postDate.textContent = formatDate(post.date);
+            postBody.innerHTML = '<p style="color: #c94e4e;">Could not load this post. The file may have been moved or deleted.</p>';
+            postModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
     }
 
@@ -310,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 statusText: 'DEPLOYMENT CRITICAL',
                 statusCode: 'critical',
-                statusIcon: 'fa-exclamation-triangle pulse',
+                statusIcon: 'fa-exclamation-triangle',
                 bandwidthVal: '5.98 / 4.00 MB',
                 bandwidthPct: 100,
                 bandwidthClass: 'bar-critical',
@@ -329,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 statusText: 'DEPLOYMENT CRITICAL',
                 statusCode: 'critical',
-                statusIcon: 'fa-exclamation-triangle pulse',
+                statusIcon: 'fa-exclamation-triangle',
                 bandwidthVal: '4.24 / 4.00 MB',
                 bandwidthPct: 100,
                 bandwidthClass: 'bar-critical',
@@ -523,6 +603,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const gridHeight = 30;
         let weights = [];
         let animationFrameId = null;
+        let canvasDim = { width: 0, height: 0 };
+
+        const canvasContainer = canvas.parentElement;
+        const resizeObserver = new ResizeObserver((entries) => {
+            const entry = entries[0];
+            if (entry) {
+                canvasDim.width = entry.contentRect.width;
+                canvasDim.height = entry.contentRect.height;
+            }
+        });
+        resizeObserver.observe(canvasContainer);
 
         function initWeights() {
             weights = [];
@@ -543,17 +634,19 @@ document.addEventListener('DOMContentLoaded', function () {
             if (currentTab !== 'sparsity') return;
 
             const dpr = window.devicePixelRatio || 1;
-            const rect = canvas.getBoundingClientRect();
+            const width = canvasDim.width;
+            const height = canvasDim.height;
 
-            // Match internal dimensions to displayed layout for high DPI screens
-            if (canvas.width !== rect.width * dpr || canvas.height !== rect.height * dpr) {
-                canvas.width = rect.width * dpr;
-                canvas.height = rect.height * dpr;
-                ctx.scale(dpr, dpr);
+            if (width === 0 || height === 0) {
+                animationFrameId = requestAnimationFrame(drawSparsity);
+                return;
             }
 
-            const width = rect.width;
-            const height = rect.height;
+            if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+            }
             ctx.clearRect(0, 0, width, height);
 
             const cellW = width / gridWidth;
@@ -638,6 +731,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     loadPosts();
+    loadFocus();
+    loadCrackSegData();
 });
 
 document.addEventListener('DOMContentLoaded', initLightbox);

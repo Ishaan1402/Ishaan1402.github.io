@@ -1,0 +1,41 @@
+{
+  "categories": [
+    {
+      "icon": "fa-laptop-code",
+      "label": "Building",
+      "items": [
+        { "text": "Pathfinder", "done": true },
+        { "text": "ELO-Ranked Pickup Basketball App", "done": false }
+      ]
+    },
+    {
+      "icon": "fa-book-open",
+      "label": "Reading",
+      "items": [
+        { "text": "The Lies of Locke Lamora", "done": true },
+        { "text": "Project Hail Mary", "done": true },
+        { "text": "Steve Jobs", "done": false },
+        { "text": "The Shock Doctrine", "done": false }
+      ]
+    },
+    {
+      "icon": "fa-graduation-cap",
+      "label": "NC State",
+      "items": [
+        { "text": "Deep Learning Beyond Accuracy", "done": false },
+        { "text": "Design & Analysis Of Algorithms", "done": false }
+      ]
+    },
+    {
+      "icon": "fa-coffee",
+      "label": "Hobbies",
+      "items": [
+        { "text": "Basketball", "done": false },
+        { "text": "Hiking", "done": false },
+        { "text": "Cooking", "done": false },
+        { "text": "Watching movies", "done": false },
+        { "text": "Trying new foods", "done": false }
+      ]
+    }
+  ]
+}

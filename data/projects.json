@@ -1,0 +1,15 @@
+{
+  "crackSeg": {
+    "stats": [
+      { "value": "0.747", "label": "Dice Score" },
+      { "value": "0.596", "label": "IoU" },
+      { "value": "8K", "label": "Max Resolution" }
+    ],
+    "tags": [
+      { "text": "PyTorch" },
+      { "text": "FastAPI" },
+      { "text": "Docker" },
+      { "text": "+9.85% Dice (via Pathfinder)", "accent": true, "icon": "fa-brain" }
+    ]
+  }
+}
