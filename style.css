@@ -291,7 +291,7 @@ a:focus-visible {
 .dashboard-panel {
     display: none;
     opacity: 0;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 120px);
 }
 
 .dashboard-panel.active {
