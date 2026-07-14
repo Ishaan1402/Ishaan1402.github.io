@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     async function loadPosts() {
         if (!postsGrid) return;
         try {
-            const response = await fetch('writing/posts.json');
+            const response = await fetch('data/posts.json');
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const data = await response.json();
 
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Hardware Diagnostics Data mapped to compression steps
         const diagnosticsData = [
             {
-                statusText: 'DEPLOYMENT CRITICAL',
+                statusText: 'CRITICAL',
                 statusCode: 'critical',
                 statusIcon: 'fa-exclamation-triangle',
                 bandwidthVal: '5.98 / 4.00 MB',
@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             {
-                statusText: 'DEPLOYMENT CRITICAL',
+                statusText: 'CRITICAL',
                 statusCode: 'critical',
                 statusIcon: 'fa-exclamation-triangle',
                 bandwidthVal: '4.24 / 4.00 MB',
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             {
-                statusText: 'COMPATIBLE (REDUCED BATTERY)',
+                statusText: 'REDUCED BATTERY',
                 statusCode: 'warning',
                 statusIcon: 'fa-exclamation-circle',
                 bandwidthVal: '3.04 / 4.00 MB',
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             {
-                statusText: 'COMPATIBLE (REDUCED BATTERY)',
+                statusText: 'REDUCED BATTERY',
                 statusCode: 'warning',
                 statusIcon: 'fa-exclamation-circle',
                 bandwidthVal: '2.28 / 4.00 MB',
@@ -464,7 +464,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             {
-                statusText: 'OPTIMAL DEPLOYMENT',
+                statusText: 'OPTIMAL',
                 statusCode: 'optimal',
                 statusIcon: 'fa-check-circle',
                 bandwidthVal: '1.52 / 4.00 MB',

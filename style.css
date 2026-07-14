@@ -271,6 +271,7 @@ a {
     height: 100%;
     position: relative;
     scroll-behavior: smooth;
+    overscroll-behavior: none;
 }
 
 .dashboard-stage {
@@ -456,8 +457,12 @@ a:focus-visible {
 }
 
 .btn-secondary:hover {
-    background: rgba(0, 0, 0, 0.04);
+    background: rgba(14, 59, 44, 0.08);
     border-color: var(--primary-hover);
+}
+
+.btn-secondary .pdf-icon {
+    color: #e04b4b;
 }
 
 .bio-card {
@@ -470,10 +475,6 @@ a:focus-visible {
     margin-bottom: 18px;
 }
 
-.tagline-badge {
-    color: var(--primary);
-    font-weight: 400;
-}
 
 .stat-box {
     text-align: center;
@@ -732,24 +733,11 @@ a:focus-visible {
 }
 
 .project-btn.secondary:hover {
-    background: var(--primary);
-    color: var(--white);
-}
-
-.project-btn.poster-btn {
-    background: var(--white);
-    color: var(--near-black);
-    border: 1px solid var(--primary);
-    padding: 10px 17px;
-}
-
-.project-btn.poster-btn:hover {
-    border-color: var(--primary);
-    background: var(--light-bg);
+    background: rgba(14, 59, 44, 0.08);
+    border-color: var(--primary-hover);
     color: var(--primary);
 }
-
-.project-btn.poster-btn .pdf-icon {
+.project-btn.secondary .pdf-icon {
     color: #e04b4b;
     font-size: 16px;
 }
@@ -1366,7 +1354,7 @@ a:focus-visible {
 .timeline-item::before {
     content: '';
     position: absolute;
-    left: -28px;
+    left: -31px;
     top: 6px;
     width: 10px;
     height: 10px;
@@ -1428,7 +1416,7 @@ a:focus-visible {
 }
 
 .timeline-content li::before {
-    content: '→';
+    content: '–';
     position: absolute;
     left: 0;
     color: var(--primary);
@@ -1605,16 +1593,16 @@ a:focus-visible {
 .resume-nav-btn:hover {
     background: var(--primary-hover);
 }
-
 .resume-nav-btn.secondary {
-    background: #f1f5f9;
-    color: var(--text-dark);
+    background: transparent;
+    color: var(--primary);
     border: 1px solid var(--primary);
 }
 
 .resume-nav-btn.secondary:hover {
-    background: #e2e8f0;
-    color: var(--near-black);
+    background: rgba(14, 59, 44, 0.08);
+    border-color: var(--primary-hover);
+    color: var(--primary);
 }
 
 /* Responsive Design */
@@ -2070,7 +2058,7 @@ a:focus-visible {
     border-radius: 2px;
     overflow: hidden;
     border: 1px solid var(--card-border);
-    aspect-ratio: 0.95;
+    aspect-ratio: 0.88;
     display: flex;
     flex-direction: column;
 }
@@ -2134,7 +2122,7 @@ a:focus-visible {
 
 /* System Diagnostics Dashboard Styling */
 #panel-diagnostics {
-    padding: 15px;
+    padding: 12px;
     justify-content: space-between;
     flex: 1;
 }
@@ -2147,10 +2135,10 @@ a:focus-visible {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
     min-height: 180px;
-    padding: 15px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 .diag-header {
@@ -2158,7 +2146,7 @@ a:focus-visible {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
 
 .diag-status-badge {
@@ -2201,7 +2189,7 @@ a:focus-visible {
 .diag-metrics {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
 }
 
 .diag-metric-row {
@@ -2250,7 +2238,7 @@ a:focus-visible {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 10px;
+    padding-top: 8px;
 }
 
 .console-body {
@@ -2275,53 +2263,7 @@ a:focus-visible {
 .log-line.log-info { color: #88ff88; opacity: 0.9; }
 .log-line.log-ok { color: #6bf183; }
 
-/* Limitations Box Styling */
-.limitations-box {
-    padding: 25px;
-    height: 100%;
-    overflow-y: auto;
-    background: #fffdf9;
-    border-left: 4px solid #f0ad4e;
-}
 
-.limitations-box h4 {
-    font-size: 16px;
-    color: #c94e4e;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.limitations-box h4 i {
-    color: #f0ad4e;
-}
-
-.limitations-box ul {
-    list-style: none;
-    padding: 0;
-}
-
-.limitations-box li {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-dark);
-    margin-bottom: 12px;
-    position: relative;
-    padding-left: 20px;
-}
-
-.limitations-box li::before {
-    content: '•';
-    position: absolute;
-    left: 5px;
-    color: #f0ad4e;
-    font-weight: bold;
-}
-
-.limitations-box li strong {
-    color: var(--near-black);
-}
 
 /* Paper & GitHub Buttons under Visual Panel */
 .visual-actions {
@@ -2332,56 +2274,9 @@ a:focus-visible {
     width: 100%;
 }
 
-.paper-download-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-    padding: 14px 24px;
-    background: var(--white);
-    color: var(--near-black);
-    border: 1px solid var(--primary);
-    border-radius: 2px;
-    font-weight: 600;
-    font-size: 15px;
+.visual-actions .project-btn {
     width: 100%;
-    transition: background 0.15s ease, border-color 0.15s ease;
-    text-align: center;
-    cursor: pointer;
-}
-
-.paper-download-btn:hover {
-    border-color: var(--primary);
-    background: var(--light-bg);
-}
-
-.paper-download-btn .pdf-icon {
-    color: #e04b4b;
-    font-size: 18px;
-}
-
-.github-code-btn {
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 14px 24px;
-    background: var(--primary);
-    color: var(--white);
-    border: 1px solid var(--primary);
-    border-radius: 2px;
-    font-weight: 600;
-    font-size: 15px;
-    width: 100%;
-    transition: background 0.15s ease;
-    text-align: center;
-    cursor: pointer;
-}
-
-.github-code-btn:hover {
-    background: var(--primary-hover);
-    border-color: var(--primary-hover);
 }
 
 /* BuoyNet Metrics formatting */
@@ -2421,13 +2316,6 @@ a:focus-visible {
         font-size: 12px;
     }
 
-    .limitations-box {
-        padding: 15px;
-    }
-
-    .limitations-box li {
-        font-size: 13px;
-    }
 
     .canvas-container {
         min-height: 150px;

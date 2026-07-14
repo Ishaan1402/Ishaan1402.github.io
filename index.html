@@ -92,24 +92,20 @@
                 <!-- 1. ABOUT PANEL (BENTO HUB) -->
                 <section class="dashboard-panel active" id="panel-about">
                     <div class="about-grid">
-                        <!-- Hero Welcome & Bio Card -->
+                        <!-- Welcome & Bio Card -->
                         <div class="about-card welcome-card">
                             <h1>Ishaan <span class="highlight">Patel</span></h1>
-                            <p class="tagline">MS Computer Science at NC State <span class="tagline-badge">ML/AI
-                                    Concentration</span></p>
-                            <p class="about-lead">
-                                I'm a software engineer pursuing my Master's in CS at NC State with a focus on
-                                Machine Learning and AI. Before grad school, I built software at Prometheus Group and
-                                Fidelity Investments. My undergraduate research at UNC Charlotte focused on optimizing
-                                learned data structures for graph algorithms.
-                            </p>
+                            <p class="tagline">MS Computer Science at NC State &middot; ML/AI Concentration</p>
                             <div class="about-actions">
                                 <button class="btn btn-primary tab-trigger" data-target="projects">
                                     View My Projects <i class="fas fa-arrow-right"></i>
                                 </button>
                                 <button class="btn btn-secondary tab-trigger" data-target="experience">
-                                    Explore Skills <i class="fas fa-brain"></i>
+                                    Explore Skills
                                 </button>
+                                <a href="docs/Resume.pdf" target="_blank" class="btn btn-secondary">
+                                    <i class="far fa-file-pdf pdf-icon"></i> Resume
+                                </a>
                             </div>
                         </div>
 
@@ -138,11 +134,9 @@
                                     <span class="project-subtitle">Decoupled HPO Supervisor</span>
                                 </h3>
                                 <p class="project-description">
-                                    Tuning a model means setting search spaces, reading terminal logs, and debugging 
-                                    why a trial crashed. The AI agent open in your IDE 
-                                    can't see any of this data. Pathfinder handles concurrency, visualizes telemetry, 
-                                    and gives your IDE agent structured context to write configs and refine assumptions 
-                                    as you go. The agent never touches the suggest path, keeping the sampler deterministic. 
+                                    Hyperparameter tuning for deep learning experiments. Track trials via dashboard 
+                                    or CLI, and let your AI agent read the database to catch patterns across hundreds 
+                                    of runs and adjust search spaces.
                                 </p>
 
                                 <div class="project-tags">
@@ -178,10 +172,10 @@
                                     <span class="project-subtitle">UAV Bridge Crack Segmentation</span>
                                 </h3>
                                 <p class="project-description">
-                                    A deep learning system for automated bridge inspections using a custom U-Net. It
-                                    processes high-resolution UAV imagery via sliding window inference. Model hyperparameters 
-                                    were optimized using the Pathfinder HPO framework,
-                                    improving validation Dice score to 0.747 within 2 iterations.
+                                    A deep learning system for automated bridge inspections using a custom U-Net. Processes 
+                                    high-resolution UAV imagery via sliding window inference. The Pathfinder HPO framework 
+                                    optimized hyperparameters, achieving a 0.747 validation Dice score by the second study 
+                                    using agent feedback.
                                 </p>
 
                                 <div class="project-tags" id="crackseg-tags">
@@ -200,7 +194,7 @@
                                         🤗 Hugging Face
                                     </a>
                                     <a href="writing/artifacts/bridge_crack_detection_poster_final.pdf" target="_blank"
-                                        class="project-btn poster-btn">
+                                        class="project-btn secondary">
                                         <i class="far fa-file-pdf pdf-icon"></i> Poster
                                     </a>
                                 </div>
@@ -253,12 +247,10 @@
                                     <i class="fas fa-university"></i> NC State University · Software-Hardware Codesign
                                 </div>
                                 <p class="project-description">
-                                    Edge ML design study on classifying marine microplastics into 16 morphological
-                                    categories
-                                    for solar-powered IoT buoy cameras. This study applies Deep Compression to analyze
-                                    the tradeoffs
+                                    Edge ML design study on classifying marine microplastics into 16 morphological categories
+                                    for solar-powered IoT buoy cameras. This study applies Deep Compression to analyze the tradeoffs
                                     between model accuracy, latency, and model size under simulated Raspberry Pi 4B
-                                    resource limits.
+                                    hardware constraints.
                                 </p>
 
                                 <div class="project-tags">
@@ -315,8 +307,6 @@
                                         Sparsity</button>
                                     <button class="visual-tab-btn buoynet-control" data-tab="diagnostics">System
                                         Diagnostics</button>
-                                    <button class="visual-tab-btn buoynet-control" data-tab="limits">Scope
-                                        Limitations</button>
                                 </div>
 
                                 <div class="visual-panel-container">
@@ -350,7 +340,7 @@
                                             <div class="diag-metrics">
                                                 <div class="diag-metric-row">
                                                     <div class="diag-metric-label">
-                                                        <span>LoRaWAN OTA Bandwidth</span>
+                                                        <span>LoRaWAN OTA Payload</span>
                                                         <span id="diag-val-bandwidth">5.98 / 4.00 MB</span>
                                                     </div>
                                                     <div class="diag-bar-container">
@@ -396,40 +386,15 @@
                                             diagnostics
                                         </div>
                                     </div>
-
-                                    <!-- Tab 3: Scope & Limitations Accordion -->
-                                    <div class="visual-panel" id="panel-limits">
-                                        <div class="limitations-box">
-                                            <h4>Limitations</h4>
-                                            <ul>
-                                                <li>
-                                                    <strong>Not Field Deployed:</strong>
-                                                    BuoyNet is an IoT evaluation and viability study. I haven't tested
-                                                    this on open waters yet.
-                                                </li>
-                                                <li>
-                                                    <strong>Simulated Edge Metrics:</strong>
-                                                    The latency and energy values are modeled from Colab timing benchmarks
-                                                    and scaled for Raspberry Pi 4B. They are not coming from any hardware
-                                                    telemetry.
-                                                </li>
-                                                <li>
-                                                    <strong>Synthetic Domain Shift:</strong>
-                                                    I replicated turbidity, biofouling, and dim lighting through transformations on held-out splits to test 
-                                                    robustness, rather than evaluating onreal underwater stream environments.
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="visual-actions">
                                     <a href="https://github.com/Ishaan1402/BuoyNet/blob/main/reference/BuoyNet.pdf"
-                                        target="_blank" class="paper-download-btn buoynet-control">
+                                        target="_blank" class="project-btn secondary buoynet-control">
                                         <i class="fas fa-file-pdf pdf-icon"></i> Read the Academic Paper
                                     </a>
                                     <a href="https://github.com/Ishaan1402/BuoyNet" target="_blank"
-                                        class="github-code-btn buoynet-control">
+                                        class="project-btn buoynet-control">
                                         <i class="fab fa-github"></i> GitHub Code
                                     </a>
                                 </div>
@@ -470,7 +435,7 @@
                                     <div class="timeline-content">
                                         <span class="timeline-date">Aug 2024 - July 2025</span>
                                         <h3>Prometheus Group</h3>
-                                        <h4>Software Engineer</h4>
+                                        <h4>Full Stack Developer</h4>
                                         <ul>
                                             <li>Implemented features and resolved defects across C# .NET and React
                                                 services</li>
@@ -488,10 +453,10 @@
                                         <h3>Fidelity Investments</h3>
                                         <h4>Software Engineer Intern</h4>
                                         <ul>
-                                            <li>Integrated Azure Messaging Service for real-time data pipelines</li>
+                                            <li>Integrated Azure Messaging Service to enable asynchronous ingestion, improving pipeline throughput and reducing message latency</li>
                                             <li>Used Java ORM patterns to manage large-scale 401(k) transactions</li>
-                                            <li>Reduced processing latency by 34%</li>
-                                            <li>Architected modular, multi-tier application in Maven + Spring Boot</li>
+                                            <li>Developed API endpoints for publishing financial data through Azure Service Bus; migrated codebase from Bitbucket to GitHub</li>
+                                            <li>Architected a modular, layered Spring Boot application built with Maven</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -620,19 +585,19 @@
                                             Git</span>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Resume Panel -->
-                            <div class="resume-card-box">
-                                <h3>Resume Document</h3>
-                                <p>View my resume or download a local copy.</p>
-                                <div class="resume-actions-grid">
-                                    <a href="docs/Resume.pdf" target="_blank" class="resume-nav-btn">
-                                        <i class="fas fa-external-link-alt"></i> Preview PDF
-                                    </a>
-                                    <a href="docs/Resume.pdf" download class="resume-nav-btn secondary">
-                                        <i class="fas fa-download"></i> Download Copy
-                                    </a>
+                                <!-- Resume Panel -->
+                                <div class="resume-card-box">
+                                    <h3>Resume Document</h3>
+                                    <p>View my resume or download a local copy.</p>
+                                    <div class="resume-actions-grid">
+                                        <a href="docs/Resume.pdf" target="_blank" class="resume-nav-btn">
+                                            <i class="fas fa-external-link-alt"></i> Preview PDF
+                                        </a>
+                                        <a href="docs/Resume.pdf" download class="resume-nav-btn secondary">
+                                            <i class="fas fa-download"></i> Download Copy
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
