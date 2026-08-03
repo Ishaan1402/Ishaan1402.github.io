@@ -4,641 +4,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ishaan Patel | Software Engineer</title>
+    <title>Ishaan Patel | MS Computer Science at NC State</title>
     <meta name="description"
-        content="Ishaan Patel - MS Computer Science at NC State, specializing in ML/AI. Background in systems engineering, high-performance computing, and enterprise software.">
+        content="Ishaan Patel builds ML systems and the tooling around them. MS CS at NC State; ex-Fidelity, ex-Prometheus Group. Deep learning, edge AI, and full-stack engineering.">
+    <link rel="canonical" href="https://ishaan1402.github.io/">
+    <link rel="icon" type="image/svg+xml" href="imgs/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ishaan Patel">
+    <meta property="og:description" content="I build ML systems and the tooling around them. MS CS at NC State.">
+    <meta property="og:url" content="https://ishaan1402.github.io/">
+    <meta property="og:image" content="https://ishaan1402.github.io/imgs/pf.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
-    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-        crossorigin="anonymous"></script>
-    <!-- GoatCounter Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous">
+    </script>
     <script data-goatcounter="https://ishaan1402.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 
 <body>
-    <!-- App Dashboard Container -->
-    <div class="app-container">
-
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <img src="imgs/pf.png" alt="Ishaan Patel" class="sidebar-avatar">
-                <div class="brand-text">
-                    <h2>Ishaan Patel</h2>
-                    <span class="brand-subtitle">Graduate Student @ NC State</span>
-                </div>
+    <main class="wrap">
+        <header class="hero">
+            <div class="toprow">
+                <label class="theme-toggle">
+                    <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="toggle-track" aria-hidden="true"></span>
+                    <span class="toggle-label">Dark</span>
+                </label>
             </div>
-
-            <nav class="sidebar-nav">
-                <ul>
-                    <li>
-                        <button class="nav-btn active" data-tab="about" id="nav-about" aria-selected="true" aria-controls="panel-about">
-                            <i class="fas fa-user-astronaut"></i> About Me
-                        </button>
-                    </li>
-                    <li>
-                        <button class="nav-btn" data-tab="projects" id="nav-projects" aria-selected="false" aria-controls="panel-projects">
-                            <i class="fas fa-project-diagram"></i> Projects
-                        </button>
-                    </li>
-                    <li>
-                        <button class="nav-btn" data-tab="experience" id="nav-experience" aria-selected="false" aria-controls="panel-experience">
-                            <i class="fas fa-brain"></i> Experience & Skills
-                        </button>
-                    </li>
-                    <li>
-                        <button class="nav-btn" data-tab="writing" id="nav-writing" aria-selected="false" aria-controls="panel-writing">
-                            <i class="fas fa-feather-alt"></i> Writing
-                        </button>
-                    </li>
-                </ul>
+            <h1 class="name">Ishaan Patel</h1>
+            <p class="role">MS Computer Science at NC State</p>
+            <p class="bio">I'm a second-year master's student at NC State working on deep learning systems. Before
+                grad school I spent a year as a full-stack developer at Prometheus Group, two summers as an intern at
+                Fidelity, and a year in undergrad research on learned indexes.</p>
+            <p class="seeking">Open to <em>part-time and full-time</em> roles in ML or software engineering.<br>
+                Available during my master's and after graduation (May 2027).</p>
+            <nav class="ctas" aria-label="Resume and contact">
+                <a class="btn" href="docs/Resume.pdf">Resume</a>
+                <a class="link" href="mailto:ishbhagat02@gmail.com">Email</a>
+                <a class="link" href="https://github.com/ishaan1402">GitHub</a>
+                <a class="link" href="https://linkedin.com/in/ishaan1402">LinkedIn</a>
             </nav>
-
-            <div class="sidebar-footer">
-                <div class="social-icons">
-                    <a href="https://github.com/ishaan1402" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/ishaan1402" target="_blank" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:ishbhagat02@gmail.com" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Mobile Navigation Header -->
-        <header class="mobile-header">
-            <div class="mobile-brand">
-                <img src="imgs/pf.png" alt="Ishaan Patel" class="mobile-avatar">
-                <span>Ishaan Patel</span>
-            </div>
-            <button class="mobile-toggle" aria-label="Toggle Navigation menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </header>
 
-        <!-- Main Dashboard Stage -->
-        <main class="main-content">
-            <div class="dashboard-stage">
-
-                <!-- 1. ABOUT PANEL (BENTO HUB) -->
-                <section class="dashboard-panel active" id="panel-about">
-                    <div class="about-grid">
-                        <!-- Welcome & Bio Card -->
-                        <div class="about-card welcome-card">
-                            <h1>Ishaan <span class="highlight">Patel</span></h1>
-                            <p class="tagline">MS Computer Science at NC State &middot; ML/AI Concentration</p>
-                            <div class="about-actions">
-                                <button class="btn btn-primary tab-trigger" data-target="projects">
-                                    View My Projects <i class="fas fa-arrow-right"></i>
-                                </button>
-                                <button class="btn btn-secondary tab-trigger" data-target="experience">
-                                    Explore Skills
-                                </button>
-                                <a href="docs/Resume.pdf" target="_blank" class="btn btn-secondary">
-                                    <i class="far fa-file-pdf pdf-icon"></i> Resume
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- "What I'm Doing Now" Bento Card -->
-                        <div class="about-card focus-card">
-                            <h3>What I'm Doing Now</h3>
-                            <ul class="focus-list" id="focus-list">
-                                <li class="focus-loading"><i class="fas fa-spinner fa-pulse"></i> Loading...</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 2. PROJECTS PANEL -->
-                <section class="dashboard-panel" id="panel-projects">
-                    <div class="section-header">
-                        <h2>Featured Projects</h2>
-                    </div>
-
-                    <div class="projects-grid">
-                        <!-- Pathfinder Card -->
-                        <div class="project-card" id="pathfinder-card">
-                            <div class="project-content">
-                                <h3 class="project-title">
-                                    Pathfinder
-                                    <span class="project-subtitle">Decoupled HPO Supervisor</span>
-                                </h3>
-                                <p class="project-description">
-                                    Hyperparameter tuning for deep learning experiments. Track trials via dashboard 
-                                    or CLI, and let your AI agent read the database to catch patterns across hundreds 
-                                    of runs and adjust search spaces.
-                                </p>
-
-                                <div class="project-tags">
-                                    <span class="tag">Python</span>
-                                    <span class="tag">FastAPI</span>
-                                    <span class="tag">Optuna</span>
-                                    <span class="tag">MCP</span>
-                                    <span class="tag">SQLite</span>
-                                </div>
-
-                                <div class="project-links">
-                                    <a href="https://github.com/Ishaan1402/pathfinder" target="_blank"
-                                        class="project-btn">
-                                        <i class="fab fa-github"></i> GitHub Code
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="project-visual">
-                                <div class="chart-wrapper">
-                                    <img src="imgs/hpo_comparison_chart.svg"
-                                         alt="Dice Score comparison across completed HPO trials on bridge crack UNet"
-                                        style="max-width: 100%; height: auto;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- UAV Crack-Seg Card -->
-                        <div class="project-card" id="crack-seg-card">
-                            <div class="project-content">
-                                <h3 class="project-title">
-                                    crack-seg
-                                    <span class="project-subtitle">UAV Bridge Crack Segmentation</span>
-                                </h3>
-                                <p class="project-description">
-                                    A deep learning system for automated bridge inspections using a custom U-Net. Processes 
-                                    high-resolution UAV imagery via sliding window inference. The Pathfinder HPO framework 
-                                    optimized hyperparameters, achieving a 0.747 validation Dice score by the second study 
-                                    using agent feedback.
-                                </p>
-
-                                <div class="project-tags" id="crackseg-tags">
-                                </div>
-
-                                <div class="project-stats" id="crackseg-stats">
-                                </div>
-
-                                <div class="project-links">
-                                    <a href="https://github.com/Ishaan1402/crack-seg" target="_blank"
-                                        class="project-btn">
-                                        <i class="fab fa-github"></i> GitHub Code
-                                    </a>
-                                    <a href="https://huggingface.co/ishaan1402/crack-seg" target="_blank"
-                                        class="project-btn secondary">
-                                        🤗 Hugging Face
-                                    </a>
-                                    <a href="writing/artifacts/bridge_crack_detection_poster_final.pdf" target="_blank"
-                                        class="project-btn secondary">
-                                        <i class="far fa-file-pdf pdf-icon"></i> Poster
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="project-visual">
-                                <div class="slider-tabs">
-                                    <button class="tab-btn active" data-mode="mask">Mask Overlay</button>
-                                    <button class="tab-btn" data-mode="heatmap">Density Heatmap</button>
-                                </div>
-                                <div class="slider-container" style="--clip-percent: 50%;">
-                                    <!-- Background Image (Raw input) -->
-                                    <img src="imgs/crack_input.webp" alt="Raw UAV Bridge Concrete Input"
-                                        class="slider-img img-background" draggable="false">
-
-                                    <!-- Foreground Image (Mask or Heatmap) -->
-                                    <div class="img-foreground">
-                                        <img id="foreground-img" src="imgs/crack_mask.webp"
-                                            alt="Concrete crack segmentation overlay" class="slider-img"
-                                            draggable="false">
-                                    </div>
-
-                                    <!-- Slider Separator Line -->
-                                    <div class="slider-line">
-                                        <div class="slider-handle">
-                                            <i class="fas fa-arrows-alt-h"></i>
-                                        </div>
-                                    </div>
-
-                                    <!-- Transparent Range Input overlay for interactions -->
-                                    <input type="range" min="0" max="100" value="50" class="slider-range"
-                                        aria-label="Concrete crack segmentation overlay slider">
-                                </div>
-                                <div class="slider-instruction">
-                                    <i class="fas fa-arrows-alt-h"></i> Drag slider or use arrow keys to compare inputs
-                                    and outputs
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- BuoyNet Card -->
-                        <div class="project-card" id="buoynet-card">
-                            <div class="project-content">
-                                <h3 class="project-title">
-                                    BuoyNet
-                                    <span class="project-subtitle">Edge Deep Compression for Marine Microplastic
-                                        Classification</span>
-                                </h3>
-                                <div class="project-origin">
-                                    <i class="fas fa-university"></i> NC State University · Software-Hardware Codesign
-                                </div>
-                                <p class="project-description">
-                                    Edge ML design study on classifying marine microplastics into 16 morphological categories
-                                    for solar-powered IoT buoy cameras. This study applies Deep Compression to analyze the tradeoffs
-                                    between model accuracy, latency, and model size under simulated Raspberry Pi 4B
-                                    hardware constraints.
-                                </p>
-
-                                <div class="project-tags">
-                                    <span class="tag">PyTorch</span>
-                                    <span class="tag">Edge AI</span>
-                                    <span class="tag">QAT</span>
-                                    <span class="tag">IoT</span>
-                                    <span class="tag">Model Compression</span>
-                                </div>
-
-                                <!-- Interactive Simulation Controller -->
-                                <div class="compression-controller">
-                                    <div class="slider-header">
-                                        <span class="slider-title"><i class="fas fa-cogs"></i> Compression Level</span>
-                                        <span class="slider-active-name" id="buoynet-variant-name">FP32 Baseline</span>
-                                    </div>
-                                    <div class="slider-wrapper">
-                                        <input type="range" id="buoynet-slider" min="0" max="4" value="0" step="1"
-                                            class="buoynet-control" aria-label="Deep compression level slider">
-                                        <div class="slider-ticks">
-                                            <span class="tick active" data-val="0">FP32</span>
-                                            <span class="tick" data-val="1">INT8</span>
-                                            <span class="tick" data-val="2">Prune 30%</span>
-                                            <span class="tick" data-val="3">Prune 50%</span>
-                                            <span class="tick" data-val="4">Prune 70%</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="project-stats" id="buoynet-stats">
-                                    <div class="stat-item" id="bn-stat-acc">
-                                        <span class="stat-value">98.91%</span>
-                                        <span class="stat-label">Top-1 Acc</span>
-                                    </div>
-                                    <div class="stat-item" id="bn-stat-size">
-                                        <span class="savings-badge">--</span>
-                                        <span class="stat-value">5.98 MB</span>
-                                        <span class="stat-label">Payload Size</span>
-                                    </div>
-                                    <div class="stat-item" id="bn-stat-latency">
-                                        <span class="stat-value">370.40 ms</span>
-                                        <span class="stat-label">Pi 4B Latency</span>
-                                    </div>
-                                    <div class="stat-item" id="bn-stat-energy">
-                                        <span class="stat-value">0.2043 J</span>
-                                        <span class="stat-label">Energy / Inference</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="project-visual">
-                                <div class="visual-tabs">
-                                    <button class="visual-tab-btn active buoynet-control" data-tab="sparsity">Weight
-                                        Sparsity</button>
-                                    <button class="visual-tab-btn buoynet-control" data-tab="diagnostics">System
-                                        Diagnostics</button>
-                                </div>
-
-                                <div class="visual-panel-container">
-                                    <!-- Tab 1: Dynamic Canvas Simulator -->
-                                    <div class="visual-panel active" id="panel-sparsity">
-                                        <div class="canvas-container">
-                                            <canvas id="sparsity-canvas"></canvas>
-                                            <div class="canvas-overlay">
-                                                <div class="overlay-row">Sparsity Format: <span
-                                                        id="sparsity-format">Dense Checkpoint</span></div>
-                                                <div class="overlay-row">Bit Precision: <span
-                                                        id="precision-format">32-bit Float</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="slider-instruction">
-                                            <i class="fas fa-info-circle"></i> Slide left panel to simulate weight
-                                            pruning & quantization
-                                        </div>
-                                    </div>
-
-                                    <!-- Tab 2: System Diagnostics Dashboard -->
-                                    <div class="visual-panel" id="panel-diagnostics">
-                                        <div class="diagnostics-container">
-                                            <div class="diag-header">
-                                                <div class="diag-status-badge status-critical" id="diag-status">
-                                                    <i class="fas fa-exclamation-triangle"></i> DEPLOYMENT
-                                                    CRITICAL
-                                                </div>
-                                                <div class="diag-title">Buoy IoT Telemetry</div>
-                                            </div>
-                                            <div class="diag-metrics">
-                                                <div class="diag-metric-row">
-                                                    <div class="diag-metric-label">
-                                                        <span>LoRaWAN OTA Payload</span>
-                                                        <span id="diag-val-bandwidth">5.98 / 4.00 MB</span>
-                                                    </div>
-                                                    <div class="diag-bar-container">
-                                                        <div class="diag-bar bar-critical" id="diag-bar-bandwidth"
-                                                            style="width: 100%;"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="diag-metric-row">
-                                                    <div class="diag-metric-label">
-                                                        <span>CPU Duty Cycle Latency</span>
-                                                        <span id="diag-val-cpu">370.4 ms</span>
-                                                    </div>
-                                                    <div class="diag-bar-container">
-                                                        <div class="diag-bar bar-critical" id="diag-bar-cpu"
-                                                            style="width: 100%;"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="diag-metric-row">
-                                                    <div class="diag-metric-label">
-                                                        <span>Solar Battery Lifetime</span>
-                                                        <span id="diag-val-battery">4.2 Days</span>
-                                                    </div>
-                                                    <div class="diag-bar-container">
-                                                        <div class="diag-bar bar-critical" id="diag-bar-battery"
-                                                            style="width: 20%;"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="diag-console">
-                                                <div class="console-header">Console Output Log</div>
-                                                <div class="console-body" id="diag-log">
-                                                    <div class="log-line log-critical">[CRITICAL] Payload size (5.98 MB)
-                                                        exceeds LoRaWAN max session budget (4.00 MB) by +49.5%.</div>
-                                                    <div class="log-line log-warning">[WARN] Low CPU idle time; active
-                                                        duration (370.4 ms) will cause heat buildup.</div>
-                                                    <div class="log-line log-critical">[CRITICAL] Battery usage rate
-                                                        exceeds solar recharge; depletion in 4.2 days.</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slider-instruction">
-                                            <i class="fas fa-info-circle"></i> Slide left panel to observe edge resource
-                                            diagnostics
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                <div class="visual-actions">
-                                    <a href="https://github.com/Ishaan1402/BuoyNet/blob/main/reference/BuoyNet.pdf"
-                                        target="_blank" class="project-btn secondary buoynet-control">
-                                        <i class="fas fa-file-pdf pdf-icon"></i> Read the Academic Paper
-                                    </a>
-                                    <a href="https://github.com/Ishaan1402/BuoyNet" target="_blank"
-                                        class="project-btn buoynet-control">
-                                        <i class="fab fa-github"></i> GitHub Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 3. EXPERIENCE & SKILLS PANEL -->
-                <section class="dashboard-panel" id="panel-experience">
-                    <div class="experience-skills-layout">
-
-                        <!-- Left Column: Timeline -->
-                        <div class="experience-column">
-                            <div class="section-header">
-                                <h2>Experience</h2>
-                            </div>
-
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="timeline-content">
-                                        <span class="timeline-date">Aug 2025 - Present</span>
-                                        <h3>NC State University</h3>
-                                        <h4>MS in Computer Science; Concentration in ML/AI</h4>
-                                        <div class="timeline-coursework">
-                                            <strong>Coursework:</strong>
-                                            <div class="course-tags">
-                                                <span>Neural Networks</span>
-                                                <span>Software-Hardware Codesign for Intelligent Systems</span>
-                                                <span>Automated Learning and Data Analysis</span>
-                                                <span>Deep Learning Beyond Accuracy</span>
-                                                <span>Cloud Computing</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-content">
-                                        <span class="timeline-date">Aug 2024 - July 2025</span>
-                                        <h3>Prometheus Group</h3>
-                                        <h4>Full Stack Developer</h4>
-                                        <ul>
-                                            <li>Implemented features and resolved defects across C# .NET and React
-                                                services</li>
-                                            <li>Refactored legacy components following Domain-Driven Design principles
-                                            </li>
-                                            <li>Built automated testing framework integrated into CI/CD pipeline</li>
-                                            <li>Reduced sprint regression time by 40%</li>
-                                            <li>Guided junior developers on architecture and code quality</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-content">
-                                        <span class="timeline-date">Summer 2023</span>
-                                        <h3>Fidelity Investments</h3>
-                                        <h4>Software Engineer Intern</h4>
-                                        <ul>
-                                            <li>Integrated Azure Messaging Service to enable asynchronous ingestion, improving pipeline throughput and reducing message latency</li>
-                                            <li>Used Java ORM patterns to manage large-scale 401(k) transactions</li>
-                                            <li>Developed API endpoints for publishing financial data through Azure Service Bus; migrated codebase from Bitbucket to GitHub</li>
-                                            <li>Architected a modular, layered Spring Boot application built with Maven</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-content">
-                                        <span class="timeline-date">Jan 2023 - Jan 2024</span>
-                                        <h3>UNC Charlotte</h3>
-                                        <h4>Undergraduate Researcher</h4>
-                                        <ul>
-                                            <li>Specialized in high-performance C++ data structures</li>
-                                            <li>Implemented ALEX learned index and STX B+ tree optimizations</li>
-                                            <li>Conducted research on UNCC HPC Cluster with SNAP datasets</li>
-                                        </ul>
-                                        <div class="research-summary-card"
-                                            style="margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.08); padding-top: 10px;">
-                                            <div class="mini-stat-highlight">
-                                                <i class="fas fa-bolt"></i> <strong>65% Improvement</strong> in query
-                                                time over baseline methods, validated on SNAP datasets using the UNCC
-                                                High Performance Computing Cluster
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-content">
-                                        <span class="timeline-date">Summer 2022</span>
-                                        <h3>Fidelity Investments</h3>
-                                        <h4>Software Engineer Intern</h4>
-                                        <ul>
-                                            <li>Built REST API endpoints and AWS Lambda functions for Fidelity Bloom
-                                            </li>
-                                            <li>Supported 10,000+ daily users with 99.9% uptime</li>
-                                            <li>Automated infrastructure using AWS CloudFormation</li>
-                                            <li>Implemented CI/CD pipeline using Jenkins and UrbanCode Deploy</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Column: Skills & Resume -->
-                        <div class="skills-column">
-                            <div class="section-header">
-                                <h2>Skills</h2>
-                            </div>
-
-                            <div class="skills-container">
-                                <!-- Languages Category -->
-                                <div class="skill-group-card">
-                                    <h4>Languages</h4>
-                                    <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-python"></i>
-                                            Python</span>
-                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">C++</i>
-                                            C++</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-java"></i>
-                                            Java</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="dev-icon">C</i>
-                                            C</span>
-                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">C#</i>
-                                            C#</span>
-                                        <span class="skill-pill" data-level="intermediate"><i
-                                                class="fab fa-js-square"></i> JavaScript</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-database"></i>
-                                            SQL</span>
-                                    </div>
-                                </div>
-
-                                <!-- ML & AI Category -->
-                                <div class="skill-group-card">
-                                    <h4>Machine Learning & AI</h4>
-                                    <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-fire"></i>
-                                            PyTorch</span>
-                                        <span class="skill-pill" data-level="intermediate"><i
-                                                class="fas fa-camera-retro"></i> OpenCV</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-chart-line"></i>
-                                            NumPy</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-table"></i>
-                                            Pandas</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-brain"></i>
-                                            Scikit-learn</span>
-                                        <span class="skill-pill" data-level="intermediate"><i
-                                                class="fas fa-project-diagram"></i> Transformers</span>
-                                    </div>
-                                </div>
-
-                                <!-- Cloud & DevOps Category -->
-                                <div class="skill-group-card">
-                                    <h4>Cloud & Infrastructure</h4>
-                                    <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-aws"></i>
-                                            AWS</span>
-                                        <span class="skill-pill" data-level="intermediate"><i
-                                                class="fab fa-microsoft"></i> Azure</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-server"></i>
-                                            PostgreSQL</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-docker"></i>
-                                            Docker</span>
-                                        <span class="skill-pill" data-level="intermediate"><i
-                                                class="fas fa-dharmachakra"></i> Kubernetes</span>
-                                        <span class="skill-pill" data-level="intermediate"><i
-                                                class="fab fa-jenkins"></i> Jenkins</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-linux"></i>
-                                            Linux</span>
-                                    </div>
-                                </div>
-
-                                <!-- Frameworks & Tools -->
-                                <div class="skill-group-card">
-                                    <h4>Frameworks & Tools</h4>
-                                    <div class="skill-pills">
-                                        <span class="skill-pill" data-level="expert"><i class="dev-icon">.NET</i> .NET
-                                            </span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fab fa-react"></i>
-                                            React</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-leaf"></i>
-                                            Spring Boot</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fas fa-bolt"></i>
-                                            FastAPI</span>
-                                        <span class="skill-pill" data-level="intermediate"><i
-                                                class="fas fa-chart-bar"></i> Grafana</span>
-                                        <span class="skill-pill" data-level="intermediate"><i class="fas fa-tools"></i>
-                                            CMake</span>
-                                        <span class="skill-pill" data-level="expert"><i class="fab fa-git-alt"></i>
-                                            Git</span>
-                                    </div>
-                                </div>
-
-                                <!-- Resume Panel -->
-                                <div class="resume-card-box">
-                                    <h3>Resume Document</h3>
-                                    <p>View my resume or download a local copy.</p>
-                                    <div class="resume-actions-grid">
-                                        <a href="docs/Resume.pdf" target="_blank" class="resume-nav-btn">
-                                            <i class="fas fa-external-link-alt"></i> Preview PDF
-                                        </a>
-                                        <a href="docs/Resume.pdf" download class="resume-nav-btn secondary">
-                                            <i class="fas fa-download"></i> Download Copy
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <!-- 4. WRITING PANEL -->
-                <section class="dashboard-panel" id="panel-writing">
-                    <div class="section-header">
-                        <h2>Technical Notes</h2>
-                    </div>
-
-                    <div class="posts-grid" id="posts-grid">
-                        <div class="no-posts">
-                            <i class="fas fa-pen-fancy"></i>
-                            <p>Loading posts...</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Post Modal -->
-                <div class="post-modal" id="post-modal">
-                    <div class="post-modal-content">
-                        <button class="post-modal-close" id="post-modal-close" aria-label="Close article modal">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        <article class="post-article" id="post-article">
-                            <header class="post-header">
-                                <h1 id="post-title"></h1>
-                                <time id="post-date"></time>
-                            </header>
-                            <div class="post-body" id="post-body"></div>
-                        </article>
-                    </div>
+        <section class="sec" aria-label="Selected work">
+            <article class="work lead">
+                <div class="work-copy">
+                    <span class="idx">01</span>
+                    <h2 class="work-name">Upwind</h2>
+                    <p class="work-sub">Explains why US air quality spikes, not just what the number is</p>
+                    <p class="work-desc">A live app that applies AirNow monitor data, Open-Meteo weather, and NASA FIRMS
+                        fire hotspots into ranked hypotheses for local AQI events. LLM briefings are
+                        grounded in this evidence and fact-checked by an LLM judge before they're displayed.</p>
+                    <p class="work-links"><a href="https://getupwind.me">Live demo &rarr;</a> <a
+                            href="https://github.com/Ishaan1402/upwind">GitHub</a></p>
                 </div>
+            </article>
 
+            <article class="work">
+                <div class="work-copy">
+                    <span class="idx">02</span>
+                    <h2 class="work-name">crack-seg</h2>
+                    <p class="work-sub">Finds cracks in bridge concrete from drone photos</p>
+                    <p class="work-desc">A custom U-Net CNN with sliding-window inference over high-resolution UAV imagery,
+                        built to prioritize bridge inspection. Hyperparameters were tuned by Pathfinder, achieving a 9.85% increase in Dice.</p>
+                    <p class="work-metrics">0.747 Dice &middot; 0.596 IoU &middot; 92% recall &middot; 0.89 F1</p>
+                    <p class="work-links"><a href="writing/artifacts/bridge_crack_detection_poster_final.pdf">Poster PDF</a>
+                        <a href="https://github.com/Ishaan1402/crack-seg">GitHub</a> <a
+                            href="https://huggingface.co/ishaan1402/crack-seg">Hugging Face</a> </p>
+                </div>
+                <div class="work-visual">
+                    <div class="sim">
+                        <img class="sim-base" src="imgs/crack_input.webp"
+                            alt="Raw UAV bridge concrete input">
+                        <div class="sim-fg" id="crack-fg">
+                            <img src="imgs/crack_mask.webp" alt="Detected cracks overlaid on the input">
+                        </div>
+                        <div class="sim-handle" id="crack-handle"></div>
+                        <input type="range" class="sim-range" id="crack-range" min="0" max="100" value="50"
+                            aria-label="Compare raw input and detected cracks">
+                    </div>
+                    <p class="visual-note note-center">Drag to compare</p>
+                </div>
+            </article>
+
+            <article class="work">
+                <div class="work-copy">
+                    <span class="idx">03</span>
+                    <h2 class="work-name">Pathfinder</h2>
+                    <p class="work-sub">Lets an agent interpret hyperparameter tuning in real-time</p>
+                    <p class="work-desc">A decoupled HPO supervisor. The search runs on Optuna's TPE
+                        sampler, the FastAPI backend suggests
+                        hyperparameters in under 20ms and prunes weak trials, and an MCP server gives IDE agents
+                        read-only access to the run database; the optimization is never blocked by or dependant on the LLM.
+                    </p>
+                    <p class="work-links"><a href="https://github.com/Ishaan1402/pathfinder">GitHub</a></p>
+                </div>
+                <div class="work-visual">
+                    <svg class="hpo-chart" viewBox="0 0 400 320" role="img"
+                        aria-label="Pathfinder on crack-seg vs manual tuning: manual baseline reaches 0.680, the initial run peaks at 0.698 over 12 completed trials, and the updated run reaches 0.747 in 3 trials with 27 later trials pruned">
+                        <text x="44" y="26" fill="var(--ink)" font-size="13" font-weight="500">Pathfinder on crack-seg vs manual tuning</text>
+                        <line x1="44" y1="44" x2="60" y2="44" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.75"/>
+                        <text x="66" y="48" fill="var(--muted)" font-size="10.5">manual</text>
+                        <line x1="160" y1="44" x2="176" y2="44" stroke="var(--muted)" stroke-width="1.6" opacity="0.85"/>
+                        <text x="182" y="48" fill="var(--muted)" font-size="10.5">initial</text>
+                        <line x1="276" y1="44" x2="292" y2="44" stroke="var(--accent)" stroke-width="1.6"/>
+                        <text x="298" y="48" fill="var(--accent)" font-size="10.5" font-weight="500">updated</text>
+                        <line x1="52" y1="276" x2="384" y2="276" stroke="var(--line)" stroke-width="1"/>
+                        <line x1="52" y1="76" x2="52" y2="276" stroke="var(--line)" stroke-width="1"/>
+                        <line x1="52" y1="230" x2="384" y2="230" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
+                        <line x1="52" y1="180" x2="384" y2="180" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
+                        <line x1="52" y1="130" x2="384" y2="130" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
+                        <line x1="52" y1="76" x2="384" y2="76" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
+                        <text x="40" y="280" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.0</text>
+                        <text x="40" y="234" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.2</text>
+                        <text x="40" y="184" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.4</text>
+                        <text x="40" y="134" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.6</text>
+                        <text x="40" y="80" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.8</text>
+                        <text x="10" y="176" fill="var(--muted)" font-size="11.5" text-anchor="middle" transform="rotate(-90 10 176)">dice</text>
+                        <text x="52" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">0</text>
+                        <text x="96.27" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="10.5" text-anchor="middle">2</text>
+                        <text x="154.67" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">5</text>
+                        <text x="273.33" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">10</text>
+                        <text x="384" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">15</text>
+                        <text x="218" y="302" fill="var(--muted)" font-size="11.5" text-anchor="middle">completed trials</text>
+                        <line x1="52" y1="106" x2="384" y2="106" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.75"/>
+                        <line x1="96.27" y1="89.25" x2="96.27" y2="276" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.6"/>
+                        <polyline points="52,259.65 74.13,259.65 74.13,248.2 118.4,248.2 118.4,140.48 132.53,140.48 132.53,110.88 206.93,110.88 206.93,101.6 384,101.6"
+                            fill="none" stroke="var(--muted)" stroke-width="1.6" opacity="0.85"/>
+                        <g fill="var(--muted)" opacity="0.9">
+                            <circle cx="52" cy="259.65" r="2"/><circle cx="74.13" cy="248.2" r="2"/><circle cx="96.27" cy="248.2" r="2"/>
+                            <circle cx="118.4" cy="140.48" r="2"/><circle cx="132.53" cy="110.88" r="2"/><circle cx="154.67" cy="110.88" r="2"/>
+                            <circle cx="206.93" cy="101.6" r="2"/><circle cx="229.07" cy="101.6" r="2"/><circle cx="273.33" cy="101.6" r="2"/>
+                            <circle cx="295.47" cy="101.6" r="2"/><circle cx="317.6" cy="101.6" r="2"/><circle cx="384" cy="101.6" r="2"/>
+                        </g>
+                        <polyline points="52,105.73 96.27,105.73 96.27,89.25 384,89.25"
+                            fill="none" stroke="var(--accent)" stroke-width="1.6"/>
+                        <g fill="var(--accent)">
+                            <circle cx="52" cy="105.73" r="2.6"/><circle cx="74.13" cy="105.73" r="2.6"/><circle cx="96.27" cy="89.25" r="2.6"/>
+                        </g>
+                    </svg>
+                </div>
+            </article>
+
+            <article class="work">
+                <div class="work-copy">
+                    <span class="idx">04</span>
+                    <h2 class="work-name">BuoyNet</h2>
+                    <p class="work-sub">Model compression tradeoff study for solar-powered ocean buoys</p>
+                    <p class="work-desc">An edge deep-compression study for classifying marine microplastics on
+                        solar-powered IoT buoy cameras: quantization and pruning under simulated Raspberry Pi 4B
+                        constraints, measured against a LoRaWAN payload budget.</p>
+                    <p class="work-links"><a href="https://github.com/Ishaan1402/BuoyNet/blob/main/reference/BuoyNet.pdf">Paper</a> <a
+                            href="https://github.com/Ishaan1402/BuoyNet">GitHub</a></p>
+                </div>
+                <div class="work-visual table-visual">
+                    <table class="quiet-table">
+                        <thead>
+                            <tr><th>Variant</th><th class="num">Acc</th><th class="num">Size</th><th class="num">Latency</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>FP32 baseline</td><td class="num">98.91%</td><td class="num">5.98 MB</td><td class="num">370 ms</td></tr>
+                            <tr><td>QAT INT8</td><td class="num">96.10%</td><td class="num">4.24 MB</td><td class="num">347 ms</td></tr>
+                            <tr class="accent-row"><td>INT8 + prune 70%</td><td class="num">91.60%</td><td class="num">1.52 MB</td><td class="num">337 ms</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="visual-note">Trading off 7.3 accuracy points for -74.6% payload and self-sustaining solar power.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="sec" aria-label="Experience">
+            <div class="exp-row">
+                <span class="exp-date">Aug 2024 - Jul 2025</span>
+                <div>
+                    <p class="exp-org">Prometheus Group</p>
+                    <p class="exp-role">Full-stack developer &middot; C#/.NET, React</p>
+                    <p class="exp-line">Full-stack development on the flagship product in C#/.NET and React with
+                        Domain-Driven Design refactors; also built the testing framework that cut regression time by
+                        40%.</p>
+                </div>
             </div>
-        </main>
-        <!-- Mobile Sidebar Overlay Backdrop -->
-        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+            <div class="exp-row">
+                <span class="exp-date">Jun - Aug 2023</span>
+                <div>
+                    <p class="exp-org">Fidelity Investments</p>
+                    <p class="exp-role">Software engineer intern &middot; Java, Spring Boot, Azure</p>
+                    <p class="exp-line">Java Spring Boot services and Azure Service Bus pipelines for 401(k)
+                        transaction processing.</p>
+                </div>
+            </div>
+            <div class="exp-row">
+                <span class="exp-date">Jan 2023 - Jan 2024</span>
+                <div>
+                    <p class="exp-org">UNC Charlotte</p>
+                    <p class="exp-role">Undergraduate researcher &middot; C++, HPC</p>
+                    <p class="exp-line">Adapted Microsoft's ALEX learned index to dynamic graph workloads in C++;
+                        OpenMP parallelization for up to 20x speedup.</p>
+                </div>
+            </div>
+            <div class="exp-row">
+                <span class="exp-date">Jun - Aug 2022</span>
+                <div>
+                    <p class="exp-org">Fidelity Investments</p>
+                    <p class="exp-role">Software engineer intern &middot; Java, Spring Boot, AWS</p>
+                    <p class="exp-line">REST APIs and AWS Lambda functions for the Fidelity Bloom debit card roundup
+                        feature.</p>
+                </div>
+            </div>
+            <div class="edu-divider"></div>
+            <div class="edu">
+                <p class="edu-line">M.S. Computer Science, NC State &middot; ML/AI concentration &middot;
+                    <span class="edu-accent">GPA 3.78</span></p>
+                <p class="edu-line">B.S. Computer Science, UNC Charlotte &middot; Software Engineering &middot; Magna Cum
+                    Laude &middot; <span class="edu-accent">GPA 3.85</span></p>
+            </div>
+        </section>
+
+        <section class="sec" aria-label="Writing">
+            <h2 class="post-title">Notes on Learned Indexes</h2>
+            <p class="post-date">February 24, 2026</p>
+            <p class="post-desc">What I learned from a year of research on ALEX and other learned index
+                structures.</p>
+            <p class="post-link"><a href="#" id="open-post">Read the notes &rarr;</a></p>
+        </section>
+
+        <footer class="foot">
+            <a href="docs/Resume.pdf">Resume (PDF)</a>
+            <a href="mailto:ishbhagat02@gmail.com">ishbhagat02@gmail.com</a>
+            <a href="https://github.com/ishaan1402">GitHub</a>
+            <a href="https://linkedin.com/in/ishaan1402">LinkedIn</a>
+        </footer>
+    </main>
+
+    <div class="post-modal" id="post-modal" hidden>
+        <div class="post-modal-box" role="dialog" aria-modal="true" aria-labelledby="post-title">
+            <button class="post-close" id="post-close" aria-label="Close article">&times;</button>
+            <article class="post-article">
+                <header class="post-header">
+                    <h2 id="post-title"></h2>
+                    <time id="post-date"></time>
+                </header>
+                <div class="post-body" id="post-body"></div>
+            </article>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" hidden>
+        <div class="lightbox-content" id="lightbox-content"></div>
     </div>
 
     <script src="script.js"></script>

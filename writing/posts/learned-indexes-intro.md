@@ -52,9 +52,9 @@ This encoding orders edges by the source vertex `u`. In sparse graphs, this crea
 | Cit-Patents      | 3,774,768     | 16,518,948    | 4.38       | 22       | 0.076          |
 | as-Skitter       | 1,696,415     | 11,095,298    | 6.54       | 25       | 0.258          |
 | Amazon           | 334,863       | 925,872       | 2.76       | 44       | 0.397          |
-| StackOverflow    | 2,601,977     | 63,497,050    | 24.40      | —        | —              |
+| StackOverflow    | 2,601,977     | 63,497,050    | 24.40      | -        | -              |
 | **Road**         | **1,965,206** | **2,766,607** | **1.41**   | **849**  | **0.046**      |
-| **MathOverflow** | **24,818**    | **506,550**   | **20.41**  | —        | —              |
+| **MathOverflow** | **24,818**    | **506,550**   | **20.41**  | -        | -              |
 | Enron            | 36,692        | 183,831       | 5.01       | 11       | 0.497          |
 
 Road is an extreme case in this table: with a diameter of 849 and only 1.41 edges per node, edges are spread across a large, mostly empty key space with nearly no local density for ALEX to exploit. MathOverflow combines a small vertex count with high edges per node. The following plots show how differently that concentrates keys.
@@ -62,10 +62,10 @@ Road is an extreme case in this table: with a diameter of 849 and only 1.41 edge
 We compared CDF approximation for graph and KV workloads closely; the empirical distributions for our graph datasets appear in Figure 1.
 
 <div class="post-figure-grid">
-<img src="writing/artifacts/amazon_ecdf.png" alt="Amazon — empirical CDF of edge keys" loading="lazy" />
-<img src="writing/artifacts/orkut_ecdf.png" alt="Orkut — empirical CDF of edge keys" loading="lazy" />
-<img src="writing/artifacts/mathoverflow_ecdf.png" alt="MathOverflow — empirical CDF of edge keys" loading="lazy" />
-<img src="writing/artifacts/road_ecdf.png" alt="Road — empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/amazon_ecdf.png" alt="Amazon: empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/orkut_ecdf.png" alt="Orkut: empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/mathoverflow_ecdf.png" alt="MathOverflow: empirical CDF of edge keys" loading="lazy" />
+<img src="writing/artifacts/road_ecdf.png" alt="Road: empirical CDF of edge keys" loading="lazy" />
 </div>
 
 Figure 1: CDF of bitwise-concatenated edge keys across four datasets
@@ -156,7 +156,7 @@ The same issue becomes less significant in dense graphs (Amazon and Orkut).
 | Orkut        | 152.8 | 86.3 | 19.1  | 17.2 | 8.0× slower      |
 | LiveJournal  | 60.6  | 31.5 | 7.2   | 6.5  | 8.4× slower      |
 | Cit-Patents  | 26.0  | 7.8  | 4.7   | 4.3  | 5.5× slower      |
-| MathOverflow | 11.2  | 0.55 | 0.012 | —    | **~930× slower** |
+| MathOverflow | 11.2  | 0.55 | 0.012 | -    | **~930× slower** |
 
 Table 3: PageRank execution time (s), 20 iterations, 1-thread
 
@@ -206,4 +206,3 @@ Poster from our research presentation:
 <iframe class="post-pdf-embed" src="writing/artifacts/Research%20Presentation%20-%20Ishaan%20Patel%20%26%20Dhananjay%20Raghu.pptx%20(1).pdf" title="Research presentation poster"></iframe>
 
 <p class="post-pdf-link"><a href="writing/artifacts/Research%20Presentation%20-%20Ishaan%20Patel%20%26%20Dhananjay%20Raghu.pptx%20(1).pdf" target="_blank" rel="noopener">Open poster PDF in a new tab</a></p>
-
