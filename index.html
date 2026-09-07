@@ -40,11 +40,9 @@
             </div>
             <h1 class="name">Ishaan Patel</h1>
             <p class="role">MS Computer Science at NC State</p>
-            <p class="bio">I'm a second-year master's student at NC State working on deep learning systems. Before
-                grad school I spent a year as a full-stack developer at Prometheus Group, two summers as an intern at
-                Fidelity, and a year in undergrad research on learned indexes.</p>
-            <p class="seeking">Open to <em>part-time and full-time</em> roles in ML or software engineering.<br>
-                Available during my master's and after graduation (May 2027).</p>
+            <p class="bio">I'm a software engineer completing my master's at NC State, where I study deep learning systems
+                and distributed systems. I'm seeking full-time backend and applied AI/ML engineering roles.</p>
+            <p class="seeking">New grad &middot; May 2027</p>
             <nav class="ctas" aria-label="Resume and contact">
                 <a class="btn" href="docs/Resume.pdf">Resume</a>
                 <a class="link" href="mailto:ishbhagat02@gmail.com">Email</a>
@@ -59,9 +57,9 @@
                     <span class="idx">01</span>
                     <h2 class="work-name">Upwind</h2>
                     <p class="work-sub">Explains why US air quality spikes, not just what the number is</p>
-                    <p class="work-desc">A live app that applies AirNow monitor data, Open-Meteo weather, and NASA FIRMS
-                        fire hotspots into ranked hypotheses for local AQI events. LLM briefings are
-                        grounded in this evidence and fact-checked by an LLM judge before they're displayed.</p>
+                    <p class="work-desc">A live app that turns AirNow monitor data, Open-Meteo weather, and NASA FIRMS
+                        fire hotspots into ranked explanations for local air quality events. Every explanation is
+                        grounded in this evidence and checked by a second model before it's shown.</p>
                     <p class="work-links"><a href="https://getupwind.me">Live demo &rarr;</a> <a
                             href="https://github.com/Ishaan1402/upwind">GitHub</a></p>
                 </div>
@@ -72,9 +70,10 @@
                     <span class="idx">02</span>
                     <h2 class="work-name">crack-seg</h2>
                     <p class="work-sub">Finds cracks in bridge concrete from drone photos</p>
-                    <p class="work-desc">A custom U-Net CNN with sliding-window inference over high-resolution UAV imagery,
-                        built to prioritize bridge inspection. Hyperparameters were tuned by Pathfinder, achieving a 9.85% increase in Dice.</p>
-                    <p class="work-metrics">0.747 Dice &middot; 0.596 IoU &middot; 92% recall &middot; 0.89 F1</p>
+                    <p class="work-desc">A custom U-Net with sliding-window inference over high-resolution UAV imagery,
+                        so thin cracks stay visible without blowing GPU memory. Overlapping tiles are blended with a
+                        Gaussian weight map; the current checkpoint adds squeeze-and-excitation and deep supervision.</p>
+                    <p class="work-metrics">0.730 Dice &middot; 0.575 IoU &middot; 0.739 recall &middot; 0.721 precision</p>
                     <p class="work-links"><a href="writing/artifacts/bridge_crack_detection_poster_final.pdf">Poster PDF</a>
                         <a href="https://github.com/Ishaan1402/crack-seg">GitHub</a> <a
                             href="https://huggingface.co/ishaan1402/crack-seg">Hugging Face</a> </p>
@@ -98,58 +97,24 @@
                 <div class="work-copy">
                     <span class="idx">03</span>
                     <h2 class="work-name">Pathfinder</h2>
-                    <p class="work-sub">Lets an agent interpret hyperparameter tuning in real-time</p>
+                    <p class="work-sub">Lets an agent monitor and interpret hyperparameter tuning in real-time</p>
                     <p class="work-desc">A decoupled HPO supervisor. The search runs on Optuna's TPE
                         sampler, the FastAPI backend suggests
                         hyperparameters in under 20ms and prunes weak trials, and an MCP server gives IDE agents
-                        read-only access to the run database; the optimization is never blocked by or dependant on the LLM.
+                        read-only access to the run database; the optimization is never blocked by or dependent on the LLM.
                     </p>
                     <p class="work-links"><a href="https://github.com/Ishaan1402/pathfinder">GitHub</a></p>
                 </div>
-                <div class="work-visual">
-                    <svg class="hpo-chart" viewBox="0 0 400 320" role="img"
-                        aria-label="Pathfinder on crack-seg vs manual tuning: manual baseline reaches 0.680, the initial run peaks at 0.698 over 12 completed trials, and the updated run reaches 0.747 in 3 trials with 27 later trials pruned">
-                        <text x="44" y="26" fill="var(--ink)" font-size="13" font-weight="500">Pathfinder on crack-seg vs manual tuning</text>
-                        <line x1="44" y1="44" x2="60" y2="44" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.75"/>
-                        <text x="66" y="48" fill="var(--muted)" font-size="10.5">manual</text>
-                        <line x1="160" y1="44" x2="176" y2="44" stroke="var(--muted)" stroke-width="1.6" opacity="0.85"/>
-                        <text x="182" y="48" fill="var(--muted)" font-size="10.5">initial</text>
-                        <line x1="276" y1="44" x2="292" y2="44" stroke="var(--accent)" stroke-width="1.6"/>
-                        <text x="298" y="48" fill="var(--accent)" font-size="10.5" font-weight="500">updated</text>
-                        <line x1="52" y1="276" x2="384" y2="276" stroke="var(--line)" stroke-width="1"/>
-                        <line x1="52" y1="76" x2="52" y2="276" stroke="var(--line)" stroke-width="1"/>
-                        <line x1="52" y1="230" x2="384" y2="230" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
-                        <line x1="52" y1="180" x2="384" y2="180" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
-                        <line x1="52" y1="130" x2="384" y2="130" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
-                        <line x1="52" y1="76" x2="384" y2="76" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="3 4"/>
-                        <text x="40" y="280" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.0</text>
-                        <text x="40" y="234" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.2</text>
-                        <text x="40" y="184" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.4</text>
-                        <text x="40" y="134" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.6</text>
-                        <text x="40" y="80" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="end">0.8</text>
-                        <text x="10" y="176" fill="var(--muted)" font-size="11.5" text-anchor="middle" transform="rotate(-90 10 176)">dice</text>
-                        <text x="52" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">0</text>
-                        <text x="96.27" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="10.5" text-anchor="middle">2</text>
-                        <text x="154.67" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">5</text>
-                        <text x="273.33" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">10</text>
-                        <text x="384" y="292" fill="var(--muted)" font-family="var(--mono)" font-size="11.5" text-anchor="middle">15</text>
-                        <text x="218" y="302" fill="var(--muted)" font-size="11.5" text-anchor="middle">completed trials</text>
-                        <line x1="52" y1="106" x2="384" y2="106" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.75"/>
-                        <line x1="96.27" y1="89.25" x2="96.27" y2="276" stroke="var(--line)" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.6"/>
-                        <polyline points="52,259.65 74.13,259.65 74.13,248.2 118.4,248.2 118.4,140.48 132.53,140.48 132.53,110.88 206.93,110.88 206.93,101.6 384,101.6"
-                            fill="none" stroke="var(--muted)" stroke-width="1.6" opacity="0.85"/>
-                        <g fill="var(--muted)" opacity="0.9">
-                            <circle cx="52" cy="259.65" r="2"/><circle cx="74.13" cy="248.2" r="2"/><circle cx="96.27" cy="248.2" r="2"/>
-                            <circle cx="118.4" cy="140.48" r="2"/><circle cx="132.53" cy="110.88" r="2"/><circle cx="154.67" cy="110.88" r="2"/>
-                            <circle cx="206.93" cy="101.6" r="2"/><circle cx="229.07" cy="101.6" r="2"/><circle cx="273.33" cy="101.6" r="2"/>
-                            <circle cx="295.47" cy="101.6" r="2"/><circle cx="317.6" cy="101.6" r="2"/><circle cx="384" cy="101.6" r="2"/>
-                        </g>
-                        <polyline points="52,105.73 96.27,105.73 96.27,89.25 384,89.25"
-                            fill="none" stroke="var(--accent)" stroke-width="1.6"/>
-                        <g fill="var(--accent)">
-                            <circle cx="52" cy="105.73" r="2.6"/><circle cx="74.13" cy="105.73" r="2.6"/><circle cx="96.27" cy="89.25" r="2.6"/>
-                        </g>
-                    </svg>
+                <div class="work-visual table-visual">
+                    <table class="quiet-table">
+                        <tbody>
+                            <tr><td>Suggestion latency</td><td class="num">&lt; 20 ms</td></tr>
+                            <tr><td>Pruning + health flags</td><td class="num">stalled / OOM</td></tr>
+                            <tr><td>Backend</td><td class="num">SQLite WAL</td></tr>
+                            <tr><td>Agent access</td><td class="num">read-only MCP</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="visual-note">Training never waits on the LLM; the agent only reads what you ask it to read.</p>
                 </div>
             </article>
 
@@ -186,9 +151,8 @@
                 <div>
                     <p class="exp-org">Prometheus Group</p>
                     <p class="exp-role">Full-stack developer &middot; C#/.NET, React</p>
-                    <p class="exp-line">Full-stack development on the flagship product in C#/.NET and React with
-                        Domain-Driven Design refactors; also built the testing framework that cut regression time by
-                        40%.</p>
+                    <p class="exp-line">Full-stack development in C#/.NET and React, plus the automated testing
+                        framework that cut regression time by 40%.</p>
                 </div>
             </div>
             <div class="exp-row">
@@ -214,8 +178,8 @@
                 <div>
                     <p class="exp-org">Fidelity Investments</p>
                     <p class="exp-role">Software engineer intern &middot; Java, Spring Boot, AWS</p>
-                    <p class="exp-line">REST APIs and AWS Lambda functions for the Fidelity Bloom debit card roundup
-                        feature.</p>
+                    <p class="exp-line">Extended Fidelity Bloom's Round Up feature with percentage and custom dollar
+                        amounts; built user-preference REST APIs on AWS Lambda.</p>
                 </div>
             </div>
             <div class="edu-divider"></div>
