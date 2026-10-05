@@ -137,10 +137,10 @@
                         <tbody>
                             <tr><td>FP32 baseline</td><td class="num">98.91%</td><td class="num">5.98 MB</td><td class="num">370 ms</td></tr>
                             <tr><td>QAT INT8</td><td class="num">96.10%</td><td class="num">4.24 MB</td><td class="num">347 ms</td></tr>
-                            <tr class="accent-row"><td>INT8 + prune 70%</td><td class="num">91.60%</td><td class="num">1.52 MB</td><td class="num">337 ms</td></tr>
+                            <tr class="accent-row"><td>INT8 + prune 70%</td><td class="num">91.60%</td><td class="num">4.2 MB</td><td class="num">337 ms</td></tr>
                         </tbody>
                     </table>
-                    <p class="visual-note">Trading off 7.3 accuracy points for -74.6% payload and self-sustaining solar power.</p>
+                    <p class="visual-note">INT8 quantization reduces file size by ~29% (to 4.2 MB). Pruning affects accuracy and latency, not stored size. Power budget meets self-sustaining solar power.</p>
                 </div>
             </article>
         </section>
