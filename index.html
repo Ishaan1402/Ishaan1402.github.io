@@ -114,8 +114,8 @@
                     <p class="work-sub">Clearer handoffs between ambulance crews and the ER</p>
                     <p class="work-desc">I led a five-person team building Eir for the SAS Hackathon 2026,
                         developing core app features, connecting it to SAS Viya, and creating its benchmark workflow.
-                        Eir turns ambulance crews’ spoken reports into patient handoffs and triage suggestions
-                        for clinicians to review.</p>
+                        Eir transcribes ambulance reports, extracts vitals that clinicians can check against the
+                        transcript, and suggests an ESI triage level for clinician review.</p>
                     <p class="work-links"><a href="https://github.com/Ishaan1402/Eir">GitHub</a></p>
                 </div>
             </article>
@@ -127,7 +127,7 @@
                     <p class="work-sub">Explains why US air quality spikes, not just what the number is</p>
                     <p class="work-desc">A live app that pulls from 11 sources, including AirNow monitors, weather,
                         NASA FIRMS fire hotspots and satellite aerosol data, to rank the likely causes of a local air
-                        quality spike. A second model checks each explanation against the data and replaces failed
+                        quality spike. An LLM judge checks each explanation against the data and replaces failed
                         ones with a rule-based fallback. Nightly evals fail the build if quality drops.</p>
                     <p class="work-links"><a href="https://getupwind.me">Live demo &rarr;</a> <a
                             href="https://github.com/Ishaan1402/upwind">GitHub</a></p>
@@ -172,12 +172,11 @@
                 <div class="work-copy">
                     <span class="idx">04</span>
                     <h2 class="work-name">Pathfinder</h2>
-                    <p class="work-sub">Lets an agent monitor and interpret hyperparameter tuning in real-time</p>
-                    <p class="work-desc">A decoupled HPO supervisor. The search runs on Optuna's TPE
-                        sampler, the FastAPI backend suggests
-                        hyperparameters in under 20ms and prunes weak trials, and an MCP server gives IDE agents
-                        read-only access to the run database; the optimization is never blocked by or dependent on the LLM.
-                    </p>
+                    <p class="work-sub">Model tuning with help from your IDE agent</p>
+                    <p class="work-desc">A hyperparameter optimization supervisor that uses Optuna to select parameters
+                        and prune unpromising trials. It gives your IDE agent the experiment setup, results, and failure
+                        history, so you can ask it to compare runs, investigate failures, and help decide what to try
+                        next while training continues.</p>
                     <p class="work-links"><a href="https://github.com/Ishaan1402/pathfinder">GitHub</a></p>
                 </div>
             </article>
