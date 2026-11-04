@@ -41,6 +41,78 @@
         updateSlider(range.value);
     }
 
+    /* Eir: a fixed fictional demo excerpt, not live extraction or triage. */
+    var evidenceButtons = document.querySelectorAll('[data-evidence]');
+    evidenceButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            evidenceButtons.forEach(function (option) {
+                var selected = option === button;
+                option.setAttribute('aria-pressed', String(selected));
+                document.getElementById(option.getAttribute('aria-controls')).classList.toggle('is-selected', selected);
+            });
+            document.getElementById('eir-source-announcement').textContent = button.dataset.evidence === 'hr'
+                ? 'Heart rate 128 bpm. Source: Heart rate 128.'
+                : 'Blood pressure 92 over 58 mmHg. Source: BP 92 over 58.';
+        });
+    });
+
+    /* Pathfinder: real resource capabilities, with no fabricated run metrics. */
+    var inspectButton = document.getElementById('inspect-run');
+    if (inspectButton) {
+        inspectButton.addEventListener('click', function () {
+            var inspecting = inspectButton.getAttribute('aria-expanded') !== 'true';
+            inspectButton.setAttribute('aria-expanded', String(inspecting));
+            document.getElementById('pathfinder-visual').classList.toggle('is-inspecting', inspecting);
+            document.getElementById('study-packet').hidden = !inspecting;
+            document.getElementById('packet-rest').hidden = inspecting;
+        });
+    }
+
+    /* BuoyNet: measured variants from the repository's Results table.
+       The deterministic weight grid illustrates sparsity, not checkpoint weights.
+       Payload is CSR + Huffman size, not dense in-memory model size. */
+    var variants = [
+        { name: 'FP32 baseline', size: 5.98, accuracy: 98.91, pruning: 0, bits: 32 },
+        { name: 'QAT INT8', size: 4.24, accuracy: 96.10, pruning: 0, bits: 8 },
+        { name: 'INT8 + 30% pruning', size: 3.04, accuracy: 95.10, pruning: 30, bits: 8 },
+        { name: 'INT8 + 50% pruning', size: 2.28, accuracy: 93.60, pruning: 50, bits: 8 },
+        { name: 'INT8 + 70% pruning', size: 1.52, accuracy: 91.60, pruning: 70, bits: 8 }
+    ];
+    var compressionRange = document.getElementById('compression-range');
+    var weightGrid = document.getElementById('weight-grid');
+    if (compressionRange && weightGrid) {
+        var cells = [];
+        for (var i = 0; i < 100; i++) {
+            var cell = document.createElement('span');
+            cell.className = 'weight-cell';
+            cell.dataset.rank = (i * 37 + 13) % 100;
+            weightGrid.appendChild(cell);
+            cells.push(cell);
+        }
+        function updateCompression() {
+            var index = Number(compressionRange.value);
+            var variant = variants[index];
+            document.getElementById('variant-name').textContent = variant.name;
+            document.getElementById('variant-step').textContent = (index + 1) + ' / 5';
+            document.getElementById('variant-size').textContent = variant.size.toFixed(2);
+            document.getElementById('variant-accuracy').textContent = variant.accuracy.toFixed(2);
+            document.getElementById('weight-precision').textContent = variant.bits + '-bit';
+            compressionRange.setAttribute('aria-valuetext', variant.name + ': ' + variant.size.toFixed(2) + ' MB, ' + variant.accuracy.toFixed(2) + ' percent accuracy');
+            var point = document.getElementById('variant-point');
+            point.setAttribute('cx', 28 + variant.size * 19);
+            point.setAttribute('cy', 106 - (variant.accuracy - 90) * 9.2);
+            cells.forEach(function (weight) {
+                var rank = Number(weight.dataset.rank);
+                var magnitude = (rank + 0.5) / 100;
+                if (variant.bits === 8) magnitude = Math.round(magnitude * 255) / 255;
+                weight.style.opacity = 0.15 + magnitude * 0.85;
+                weight.classList.toggle('is-pruned', rank < variant.pruning);
+            });
+        }
+        compressionRange.addEventListener('input', updateCompression);
+        updateCompression();
+    }
+
     /* Post modal */
     var modal = document.getElementById('post-modal');
     var openBtn = document.getElementById('open-post');

@@ -52,29 +52,61 @@
         </header>
 
         <section class="sec" aria-label="Selected work">
-            <article class="work lead">
+            <article class="work" id="eir">
                 <div class="work-copy">
                     <span class="idx">01</span>
+                    <h2 class="work-name">Eir</h2>
+                    <p class="work-sub">Clearer handoffs between ambulance crews and the ER</p>
+                    <p class="work-desc">A live handoff app my five-person team built for the SAS Hackathon 2026.
+                        The crew talks the way they already do; Eir writes up the report, pulls out vitals along with
+                        the exact words they came from, and suggests an ESI triage level for the clinician to confirm.</p>
+                    <p class="work-links"><a href="https://github.com/Ishaan1402/Eir">GitHub</a></p>
+                </div>
+                <div class="work-visual evidence-visual">
+                    <div class="visual-heading"><span>Ambulance report</span><span class="specimen-label">Fictional sample</span></div>
+                    <!-- Excerpt: Eir/demo/three_patients.json, SYN008, reports.update. -->
+                    <blockquote class="report-excerpt">“Still weak. <mark id="eir-source-hr" class="is-selected">Heart rate 128</mark>,
+                        <mark id="eir-source-bp">BP 92 over 58</mark>, respirations 28.”</blockquote>
+                    <div class="evidence-link" aria-hidden="true"><span></span><span>Source-linked vitals</span><span></span></div>
+                    <div class="vital-options" role="group" aria-label="Highlight the source of a vital sign">
+                        <button type="button" class="vital-option" aria-pressed="true" aria-controls="eir-source-hr" data-evidence="hr">
+                            <span>Heart rate</span><strong>128 <small>bpm</small></strong>
+                        </button>
+                        <button type="button" class="vital-option" aria-pressed="false" aria-controls="eir-source-bp" data-evidence="bp">
+                            <span>Blood pressure</span><strong>92/58 <small>mmHg</small></strong>
+                        </button>
+                    </div>
+                    <p class="interaction-hint">Select a vital to trace its source.</p>
+                    <div class="review-boundary"><span aria-hidden="true">○</span> Triage remains with the clinician</div>
+                    <p class="sr-only" id="eir-source-announcement" aria-live="polite">Heart rate 128 bpm. Source: Heart rate 128.</p>
+                </div>
+            </article>
+
+            <article class="work lead">
+                <div class="work-copy">
+                    <span class="idx">02</span>
                     <h2 class="work-name">Upwind</h2>
                     <p class="work-sub">Explains why US air quality spikes, not just what the number is</p>
-                    <p class="work-desc">A live app that turns AirNow monitor data, Open-Meteo weather, and NASA FIRMS
-                        fire hotspots into ranked explanations for local air quality events. Every explanation is
-                        grounded in this evidence and checked by a second model before it's shown.</p>
+                    <p class="work-desc">A live app that pulls from 11 sources, including AirNow monitors, weather,
+                        NASA FIRMS fire hotspots and satellite aerosol data, to rank the likely causes of a local air
+                        quality spike. A second model checks every explanation against the data and swaps in a
+                        rule-based one when a check fails, and nightly evals fail the build if quality drops.</p>
                     <p class="work-links"><a href="https://getupwind.me">Live demo &rarr;</a> <a
                             href="https://github.com/Ishaan1402/upwind">GitHub</a></p>
                 </div>
             </article>
 
-            <article class="work">
+            <article class="work" id="crack-seg">
                 <div class="work-copy">
-                    <span class="idx">02</span>
+                    <span class="idx">03</span>
                     <h2 class="work-name">crack-seg</h2>
                     <p class="work-sub">Finds cracks in bridge concrete from drone photos</p>
                     <p class="work-desc">A custom U-Net with sliding-window inference over high-resolution UAV imagery,
                         so thin cracks stay visible without blowing GPU memory. Overlapping tiles are blended with a
                         Gaussian weight map; the current checkpoint adds squeeze-and-excitation and deep supervision.</p>
                     <p class="work-metrics">0.730 Dice &middot; 0.575 IoU &middot; 0.739 recall &middot; 0.721 precision</p>
-                    <p class="work-links"><a href="writing/artifacts/bridge_crack_detection_poster_final.pdf">Poster PDF</a>
+                    <p class="work-links"><a href="https://huggingface.co/spaces/ishaan1402/crack-seg-demo">Live demo &rarr;</a>
+                        <a href="writing/artifacts/bridge_crack_detection_poster_final.pdf">Poster PDF</a>
                         <a href="https://github.com/Ishaan1402/crack-seg">GitHub</a> <a
                             href="https://huggingface.co/ishaan1402/crack-seg">Hugging Face</a> </p>
                 </div>
@@ -93,9 +125,9 @@
                 </div>
             </article>
 
-            <article class="work">
+            <article class="work" id="pathfinder">
                 <div class="work-copy">
-                    <span class="idx">03</span>
+                    <span class="idx">04</span>
                     <h2 class="work-name">Pathfinder</h2>
                     <p class="work-sub">Lets an agent monitor and interpret hyperparameter tuning in real-time</p>
                     <p class="work-desc">A decoupled HPO supervisor. The search runs on Optuna's TPE
@@ -105,22 +137,54 @@
                     </p>
                     <p class="work-links"><a href="https://github.com/Ishaan1402/pathfinder">GitHub</a></p>
                 </div>
-                <div class="work-visual table-visual">
-                    <table class="quiet-table">
-                        <tbody>
-                            <tr><td>Suggestion latency</td><td class="num">&lt; 20 ms</td></tr>
-                            <tr><td>Pruning + health flags</td><td class="num">stalled / OOM</td></tr>
-                            <tr><td>Backend</td><td class="num">SQLite WAL</td></tr>
-                            <tr><td>Agent access</td><td class="num">read-only MCP</td></tr>
-                        </tbody>
-                    </table>
-                    <p class="visual-note">Training never waits on the LLM; the agent only reads what you ask it to read.</p>
+                <div class="work-visual pathfinder-visual" id="pathfinder-visual">
+                    <div class="visual-heading"><span>Independent by design</span></div>
+                    <div class="architecture">
+                        <svg viewBox="0 0 288 212" role="img" aria-labelledby="pf-title pf-desc">
+                            <title id="pf-title">Pathfinder separates optimization from agent inspection</title>
+                            <desc id="pf-desc">A training worker requests parameters from an Optuna broker and reports results. The broker stores trial history in SQLite. An IDE agent reads a review packet through MCP; it is not part of the training loop.</desc>
+                            <defs><marker id="pf-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 6 3 0 6" fill="none" stroke="context-stroke"/></marker></defs>
+                            <g class="training-path" fill="none" stroke="currentColor" stroke-width="1.2">
+                                <path d="M106 50 H182" marker-start="url(#pf-arrow)"/>
+                                <path d="M106 75 H182" marker-end="url(#pf-arrow)"/>
+                                <path d="M234 94 V135" marker-end="url(#pf-arrow)"/>
+                            </g>
+                            <text class="diagram-label" x="144" y="43" text-anchor="middle">suggest</text>
+                            <text class="diagram-label" x="144" y="90" text-anchor="middle">report</text>
+                            <text class="diagram-label" x="226" y="120" text-anchor="end">persist</text>
+                            <rect class="diagram-node" x="10" y="30" width="96" height="64" rx="3"/>
+                            <text class="diagram-name" x="58" y="57" text-anchor="middle">Worker</text>
+                            <text class="diagram-label" x="58" y="75" text-anchor="middle">Training loop</text>
+                            <rect class="diagram-node" x="182" y="30" width="96" height="64" rx="3"/>
+                            <text class="diagram-name" x="230" y="57" text-anchor="middle">Broker</text>
+                            <text class="diagram-label" x="230" y="75" text-anchor="middle">Optuna TPE</text>
+                            <rect class="diagram-node" x="182" y="137" width="96" height="58" rx="3"/>
+                            <text class="diagram-name" x="230" y="162" text-anchor="middle">Trial history</text>
+                            <text class="diagram-label" x="230" y="180" text-anchor="middle">SQLite WAL</text>
+                            <g class="inspection-path">
+                                <path d="M182 166 H106" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" marker-end="url(#pf-arrow)"/>
+                                <text class="diagram-label" x="144" y="154" text-anchor="middle">MCP</text>
+                                <text class="diagram-label" x="144" y="183" text-anchor="middle">read-only</text>
+                                <rect class="diagram-node" x="10" y="137" width="96" height="58" rx="3"/>
+                                <text class="diagram-name" x="58" y="162" text-anchor="middle">IDE agent</text>
+                                <text class="diagram-label" x="58" y="180" text-anchor="middle">On request</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <button type="button" class="inspect-button" id="inspect-run" aria-expanded="false" aria-controls="study-packet">Inspect review packet <span aria-hidden="true">↗</span></button>
+                    <div class="packet-slot">
+                        <p id="packet-rest" class="packet-rest">Training never waits on the LLM.</p>
+                        <div id="study-packet" class="study-packet" hidden>
+                            <span class="packet-label">Available in the MCP resource</span>
+                            <ul><li>Trial counts &amp; health</li><li>VRAM &amp; OOM patterns</li><li>Parameter importance</li></ul>
+                        </div>
+                    </div>
                 </div>
             </article>
 
-            <article class="work">
+            <article class="work" id="buoynet">
                 <div class="work-copy">
-                    <span class="idx">04</span>
+                    <span class="idx">05</span>
                     <h2 class="work-name">BuoyNet</h2>
                     <p class="work-sub">Model compression tradeoff study for solar-powered ocean buoys</p>
                     <p class="work-desc">An edge deep-compression study for classifying marine microplastics on
@@ -129,34 +193,55 @@
                     <p class="work-links"><a href="https://github.com/Ishaan1402/BuoyNet/blob/main/reference/BuoyNet.pdf">Paper</a> <a
                             href="https://github.com/Ishaan1402/BuoyNet">GitHub</a></p>
                 </div>
-                <div class="work-visual table-visual">
-                    <table class="quiet-table">
-                        <thead>
-                            <tr><th>Variant</th><th class="num">Acc</th><th class="num">Size</th><th class="num">Latency</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>FP32 baseline</td><td class="num">98.91%</td><td class="num">5.98 MB</td><td class="num">370 ms</td></tr>
-                            <tr><td>QAT INT8</td><td class="num">96.10%</td><td class="num">4.24 MB</td><td class="num">347 ms</td></tr>
-                            <tr class="accent-row"><td>INT8 + prune 70%</td><td class="num">91.60%</td><td class="num">1.52 MB</td><td class="num">337 ms</td></tr>
-                        </tbody>
-                    </table>
-                    <p class="visual-note">Trading off 7.3 accuracy points for -74.6% payload and self-sustaining solar power.</p>
+                <div class="work-visual compression-visual">
+                    <div class="visual-heading"><span>Compression study</span><span class="specimen-label" id="weight-precision">32-bit</span></div>
+                    <div class="compression-figures">
+                        <div class="weight-figure"><div id="weight-grid" class="weight-grid" aria-hidden="true"></div><span class="figure-caption">Illustrative weights</span></div>
+                        <div class="tradeoff-figure">
+                            <svg viewBox="0 0 148 134" role="img" aria-labelledby="bn-title bn-desc">
+                                <title id="bn-title">BuoyNet model size versus accuracy</title>
+                                <desc id="bn-desc">Five measured variants range from 5.98 MB at 98.91 percent accuracy to 1.52 MB at 91.60 percent accuracy. The slider selects a variant.</desc>
+                                <path class="plot-axis" d="M28 14 V106 H142"/>
+                                <path class="plot-grid" d="M28 14 H142 M28 60 H142"/>
+                                <text class="plot-label" x="23" y="18" text-anchor="end">100</text><text class="plot-label" x="23" y="64" text-anchor="end">95</text><text class="plot-label" x="23" y="109" text-anchor="end">90</text>
+                                <text class="plot-label" x="28" y="120" text-anchor="middle">0</text><text class="plot-label" x="142" y="120" text-anchor="end">6 MB</text>
+                                <text class="plot-label" x="28" y="9">Accuracy %</text>
+                                <polyline class="plot-line" points="141.62,24.028 108.56,49.88 85.76,59.08 71.32,72.88 56.88,91.28"/>
+                                <g class="plot-points"><circle cx="141.62" cy="24.028" r="3"/><circle cx="108.56" cy="49.88" r="3"/><circle cx="85.76" cy="59.08" r="3"/><circle cx="71.32" cy="72.88" r="3"/><circle cx="56.88" cy="91.28" r="3"/></g>
+                                <circle id="variant-point" cx="141.62" cy="24.028" r="5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <label class="variant-label" for="compression-range"><span id="variant-name">FP32 baseline</span><span id="variant-step">1 / 5</span></label>
+                    <input id="compression-range" class="compression-range" type="range" min="0" max="4" step="1" value="0" aria-label="Model compression variant" aria-valuetext="FP32 baseline: 5.98 MB, 98.91 percent accuracy">
+                    <div class="range-endpoints" aria-hidden="true"><span>Baseline</span><span>70% pruned</span></div>
+                    <div class="compression-result" aria-live="polite" aria-atomic="true"><span><strong id="variant-size">5.98</strong> MB</span><span><strong id="variant-accuracy">98.91</strong>% accuracy</span></div>
+                    <p class="visual-note"><a href="https://github.com/Ishaan1402/BuoyNet#results">Measured variants</a> · CSR + Huffman payload</p>
                 </div>
             </article>
         </section>
 
         <section class="sec" aria-label="Experience">
             <div class="exp-row">
-                <span class="exp-date">Aug 2024 - Jul 2025</span>
+                <span class="exp-date">Oct 2026 &ndash; Present</span>
+                <div>
+                    <p class="exp-org">QUASAR</p>
+                    <p class="exp-role">Co-Founder &amp; AI Engineer</p>
+                    <p class="exp-line">Co-founded a two-person consultancy building AI tools around companies’ existing
+                        data and workflows, from error triage to coding agents that open pull requests.</p>
+                </div>
+            </div>
+            <div class="exp-row">
+                <span class="exp-date">Aug 2024 &ndash; Jun 2025</span>
                 <div>
                     <p class="exp-org">Prometheus Group</p>
-                    <p class="exp-role">Full-stack developer &middot; C#/.NET, React</p>
+                    <p class="exp-role">Software Engineer &middot; C#/.NET, React</p>
                     <p class="exp-line">Full-stack development in C#/.NET and React, plus the automated testing
                         framework that cut regression time by 40%.</p>
                 </div>
             </div>
             <div class="exp-row">
-                <span class="exp-date">Jun - Aug 2023</span>
+                <span class="exp-date">Jun &ndash; Aug 2023</span>
                 <div>
                     <p class="exp-org">Fidelity Investments</p>
                     <p class="exp-role">Software engineer intern &middot; Java, Spring Boot, Azure</p>
@@ -165,7 +250,7 @@
                 </div>
             </div>
             <div class="exp-row">
-                <span class="exp-date">Jan 2023 - Jan 2024</span>
+                <span class="exp-date">Jan 2023 &ndash; Jan 2024</span>
                 <div>
                     <p class="exp-org">UNC Charlotte</p>
                     <p class="exp-role">Undergraduate researcher &middot; C++, HPC</p>
@@ -174,7 +259,7 @@
                 </div>
             </div>
             <div class="exp-row">
-                <span class="exp-date">Jun - Aug 2022</span>
+                <span class="exp-date">Jun &ndash; Aug 2022</span>
                 <div>
                     <p class="exp-org">Fidelity Investments</p>
                     <p class="exp-role">Software engineer intern &middot; Java, Spring Boot, AWS</p>
