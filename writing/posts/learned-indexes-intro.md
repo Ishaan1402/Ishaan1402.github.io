@@ -43,7 +43,7 @@ key   = (uint64_t(u) << 32) | uint64_t(v)
 value = std::pair<uint64_t, uint32_t>
 ```
 
-This encoding orders edges by the source vertex `u`. In sparse graphs, this creates large gaps in key space, which affects model accuracy and increases node splitting. I'll touch on the impact of this in the later sections.
+This encoding orders edges by the source vertex `u`, then by destination `v`. Each source ID gets its own block of $2^{32}$ possible keys, so there can be large gaps between populated blocks. How those keys are distributed depends on the vertex IDs and where the edges fall. A graph's edges-per-node ratio alone doesn't tell us how well ALEX can model that distribution. I'll return to this distinction in the later sections.
 
 | Dataset          | Nodes         | Edges         | Edges/Node | Diameter | Avg Clustering |
 | ---------------- | ------------- | ------------- | ---------- | -------- | -------------- |
@@ -57,7 +57,7 @@ This encoding orders edges by the source vertex `u`. In sparse graphs, this crea
 | **MathOverflow** | **24,818**    | **506,550**   | **20.41**  | -        | -              |
 | Enron            | 36,692        | 183,831       | 5.01       | 11       | 0.497          |
 
-Road is an extreme case in this table: with a diameter of 849 and only 1.41 edges per node, edges are spread across a large, mostly empty key space with nearly no local density for ALEX to exploit. MathOverflow combines a small vertex count with high edges per node. The following plots show how differently that concentrates keys.
+Road stands out in this table with a diameter of 849 and only 1.41 edges per node. MathOverflow is quite different: it has fewer vertices, but 20.41 edges per node, compared to Amazon's 2.76. These describe the graphs' connectivity. To see the distribution ALEX actually has to model, we need to look at the encoded keys.
 
 We compared CDF approximation for graph and KV workloads closely; the empirical distributions for our graph datasets appear in Figure 1.
 
@@ -70,7 +70,9 @@ We compared CDF approximation for graph and KV workloads closely; the empirical 
 
 Figure 1: CDF of bitwise-concatenated edge keys across four datasets
 
-Amazon and Orkut show smooth distributions where ALEX's piecewise-linear models can approximate local structure well. MathOverflow's cliff shape is the worst case for ALEX as nearly all edges are concentrated in a tiny key range while the rest of the space is empty. This will cause ALEX's cost model to over-split and add unnecessary tree depth for one of the smallest datasets we tested. Road's CDF looks linear and ideal, but the extreme lack in local density will cause similar complications for ALEX.
+Amazon and Orkut show relatively smooth distributions at this scale. MathOverflow's CDF rises sharply near the start of the plotted range, while Road's looks almost linear. MathOverflow's shape gives us a reason to investigate uneven key spacing and outliers, but the plot alone doesn't tell us how many times ALEX split a node or how deep the tree became. Road is a useful reminder of the same limitation: a smooth global CDF doesn't tell us the cost of traversing the graph.
+
+The [ALEX authors describe highly nonlinear local distributions and extreme outlier keys as known limitations](https://github.com/microsoft/ALEX#limitations-and-future-research-directions). Those are possible explanations to test against our results, rather than something we can establish just by looking at these curves.
 
 We'll return to these complications from Road and MathOverflow in the results.
 
@@ -105,7 +107,7 @@ Many learned index writeups focus on whether they're faster than a B+ tree, but 
 ### ALEX vs the B+ tree
 On graph insert time, ALEX beat the STX B+ tree baseline on the datasets we highlighted most often, which matched our expectation that using models to place data, + gapped leaf nodes can reduce expensive leaf shifts compared to denser B+ tree layouts.
 
-For example, on the Amazon graph, our recorded average insert time was about 1.2413s for ALEX versus 1.9112s for STX in the same experiment table.
+For example, on the Amazon graph, our saved comparison lists an insert time of about 1.241s for ALEX versus 1.911s for STX.
 
 On the Orkut graph, the gap was larger: about 73.41s for ALEX versus 205.07s for STX in the same insert-time comparison table.
 
@@ -113,8 +115,7 @@ On KV point lookups, our multithreaded Longitudes benchmark shows ALEX starting 
 
 STX, interestingly, starts much lower at 1 thread (1,544,163 lookups/sec) but catches up by 32 threads (48,543,689 lookups/sec), which revealed a trend we saw repeatedly: STX benefits more from multithreading than ALEX, exhibiting diminishing returns for ALEX’s advantage at high thread counts.
 
-ALEX's advantage in lookup performance faces diminishing returns when parallelizing compared to STX B+ Tree. STX benefits far more from multithreading, likely because it has a simpler node structure with fewer shared state contention points.
-- We did not measure the contention points between the two, but the scaling behavior is consistent with this assumption. 
+In this benchmark, ALEX's lookup advantage shrank as we added threads. STX gained more relative to its single-thread performance. We considered differences in memory access and shared-state overhead, but didn't isolate those effects, so the timing results alone don't tell us why the two scaled differently.
 
 |Graph|ALEX|STX (B+ Tree)|VCSR|PCSR|BAL|ALEX vs STX|
 |---|---|---|---|---|---|---|
@@ -129,43 +130,40 @@ Table 1: Graph edge insertion time (s)
 
 |Metric|Value|
 |---|---|
-|ALEX advantage at 1 thread|**up to 10.53× faster** than STX|
-|ALEX advantage at 32 threads|**only 1.07× faster** than STX|
-|STX threading speedup (1→32)|up to 10.17× greater than ALEX's|
+|ALEX throughput / STX throughput at 1 thread|**7.08×**|
+|ALEX throughput / STX throughput at 32 threads|**1.07×**|
+|ALEX throughput increase (1→32 threads)|**4.77×**|
+|STX throughput increase (1→32 threads)|**31.44×**|
 
-Table 2: ALEX vs STX KV Lookup performance when scaling up threading
+Table 2: Ratios calculated from the Longitudes lookup rates quoted above
 
 ### ALEX vs graph-specific structures
 When we zoom out to full graph algorithms, our own conclusion was very clear. We can format existing RMIs to fit graph workloads, but they are not yet as efficient as graph representations like CSR and VCSR.
 
-This was made clear in our results: on Amazon PageRank, our table row shows ALEX at about 3.5079s while VCSR is listed at about 0.3720s (with other baselines also under ALEX for that row).
+This was made clear in our results: the saved benchmark comparison lists Amazon PageRank at about 1.5930s for ALEX versus 0.3720s for VCSR. STX was faster than both in that row, at about 0.3306s.
 
-On SSSP for Amazon, the table row shows ALEX at about 0.1529s while VCSR is about 0.0894s, again indicating that specialized graph structures are far ahead for algorithmic performance.
+On SSSP for Amazon, the same comparison lists ALEX at about 0.1529s versus 0.0894s for VCSR. STX was faster here too, at about 0.0703s. The size of the gap depended on both the dataset and the algorithm.
 
-Our results made sense in hindsight: our graph algorithms repeatedly chase edges across memory in irregular patterns. Learned indices only pay off when lookups are the main operation and if the access patterns are regular.
+Our results made sense in hindsight: predicting where an edge is stored is only part of the work in a graph algorithm. We also have to visit neighbors repeatedly. Our encoding keeps a source vertex's edges together in key order, but that doesn't give ALEX the same physical layout or traversal costs as a graph-specific representation.
 
-Sparse graphs (MathOverflow and Road) have become the outlying examples. Given a small number of edges compared to the number of vertices, the generated keys would be scattered across the entire space with considerable gaps between them.
+Road and MathOverflow were recurring problem datasets, but calling both of them sparse didn't explain the result. They differ substantially in edges per node and in the shape of their encoded-key CDFs. We needed to separate the graph's connectivity, the choice of vertex IDs, and the index's memory layout before attributing the slowdown to any one of them.
 
-ALEX handles this problem by subdividing nodes several times to keep models locally accurate, resulting in deeper trees and more cache lines hit per access.
+| Graph        | ALEX  | STX  | VCSR   | ALEX time / VCSR time |
+| ------------ | ----- | ---- | ------ | -------------------- |
+| Amazon       | 1.59  | 0.33 | 0.372  | 4.3×                 |
+| Orkut        | 74.79 | 15.33| 19.123 | 3.9×                 |
+| LiveJournal  | 30.35 | 6.14 | 7.221  | 4.2×                 |
+| Cit-Patents  | 15.71 | 2.85 | 4.730  | 3.3×                 |
+| MathOverflow | 8.32  | 0.52 | 0.0119 | **~699×**            |
 
-The same issue becomes less significant in dense graphs (Amazon and Orkut).
+Table 3: PageRank execution times (s) from the saved benchmark comparison. Ratios use the unrounded values. The exported sheet does not record the thread count or iteration count, so I haven't assigned those settings to these rows.
 
-| Graph        | ALEX  | STX  | VCSR  | CSR  | ALEX vs VCSR     |
-| ------------ | ----- | ---- | ----- | ---- | ---------------- |
-| Amazon       | 3.51  | 1.28 | 0.37  | 0.27 | 9.4× slower      |
-| Orkut        | 152.8 | 86.3 | 19.1  | 17.2 | 8.0× slower      |
-| LiveJournal  | 60.6  | 31.5 | 7.2   | 6.5  | 8.4× slower      |
-| Cit-Patents  | 26.0  | 7.8  | 4.7   | 4.3  | 5.5× slower      |
-| MathOverflow | 11.2  | 0.55 | 0.012 | -    | **~930× slower** |
+### Uneven scaling across graphs
+Road and MathOverflow stood out in the PageRank threading results. In our saved 1-to-32-thread comparison, ALEX's speedup was 0.69× on Road and 0.54× on MathOverflow: adding threads made those runs slower. STX scaled much better on those PageRank runs. That wasn't true of every algorithm, though; Road's SSSP run also slowed down under STX.
 
-Table 3: PageRank execution time (s), 20 iterations, 1-thread
+Memory locality is one possible explanation. More threads don't guarantee more useful work if accesses spend their time waiting on memory. Uneven key distributions could also affect ALEX's layout. But these timings don't establish a chain from sparse graph to repeated splits to deeper trees to cache interference. Even cache-miss counts on their own would not establish all those steps.
 
-### Sparse graphs and threading 
-Road and MathOverflow would show up as recurring problem datasets where performance worsened as we increased thread count in graph analysis. Neither set performed well under ALEX, but were okay for STX.
-
-The most likely explanation we came to was sparsity. Both graphs have very few edges relative to their vertex count, which meant the bitwise concatenated keys are spread across a huge key space with large gaps between populated regions. ALEX's cost model responds to this by splitting nodes repeatedly to fit local linear models to small clusters of keys. This results in a much deeper, more unbalanced tree than you'd see for dense graphs like Orkut or Amazon. Greater tree depth leads to more cache lines touched per lookup. 
-
-This furthered our growing expectations that RMI-style architectures are a suboptimal approach to handling sparse graphs. They perform poorly when the key distribution is highly irregular, since more node splits increase tree depth and degrades locality. Maybe re-implementing ALEX into a structure that could localize those densely connected spaces could improve the cost model's predictions on where to split child nodes. 
+If I returned to this experiment, I'd compare tree depth, node occupancy and cache misses alongside the timings, and try remapping vertex IDs while preserving the same edges. That would help separate the effect of our encoding from the graph itself. The result we can state now is narrower: our ALEX adaptation scaled well on some graph workloads and poorly on others.
 
 ### Stat Counter overhead
 One detail we found was that when implementing graph algorithms for structures that weren't designed for such data, it's important to track and minimize any overhead on iterator and lookup code paths. Even the smallest of operations per lookup can significantly decrease performance. 
@@ -180,28 +178,25 @@ In hindsight, this makes sense, however it was a consideration we didn't take at
 Our main takeaway from the work is that learned indices weren’t yet as efficient as CSR/VCSR-style representations for the graph workloads we tested.
 
 In the meantime we discovered many things in the process:
-- We confirmed that ALEX's insertion advantages to the SOTA B+ Tree models still carried over to graph-encoded data, as ALEX_Graph achieves 1.5-2.8x faster insertion than STX_Graph
-- ALEX fell short in iterative graph traversal, compared to CSR-based indices, due to structural reasons. CSR stores neighbors of vertices contiguously meaning theoretically there's only one sequential scan for each visit to a vertex while ALEX has to store these edges globally.
-- The sparse graph behavior (uncovered by Road and MathOverflow runs) interestingly exhibited worse results when increasing thread count, opposite to our assumptions. 
-	- Our best explanation, backed by evaluating with perf cache-miss profiling against less sparse datasets (e.g., Amazon), was that sparse key distributions force ALEX's cost model to repeatedly split nodes, forming deeper trees than necessary. When adding multithreading to the equation, threads evict each other's lines from the shared cache rather than converging on shared nodes. Essentially, the cache couldn't hold every threads' working set, each on separate branches, exacerbated by the unnecessary depth. Denser graphs on the other hand, with shallower tree structures, benefitted far greater from multithreading. 
+- ALEX's insertion advantage over STX carried over to several graph datasets, including about 1.5× on Amazon and 2.8× on Orkut. It wasn't universal: STX inserted faster on Enron, MathOverflow and fb-wall in the saved comparison.
+- Faster insertion didn't translate into faster graph traversal. CSR-style layouts are designed around visiting a vertex's neighbors; encoding the same edges into a general-purpose index doesn't automatically preserve that efficiency.
+- Adding threads helped some workloads and hurt others. Road and MathOverflow were especially poor PageRank cases for our ALEX implementation. The cause needs more investigation than an edges-per-node count or a global CDF can provide.
 
 
 # Where This Goes
-One direction we can improve is by introducing better models to improve performance. ALEX uses ordinary least squares linear regression with a closed-form formula for leaf node models. Our team discussed other regression techniques (e.g., polynomial) and comparing best-fit lines to gradient-descent-based regression approaches in order to address the sparse key distribution performance decline.
+One direction our team discussed was trying other regression models, such as polynomial models, for key distributions that linear models fit poorly. I'd want to measure the prediction error first, though. A more expensive model would need to save enough search or update work to justify its own cost.
 
 Another direction is concurrency as we expressed thread-safety issues around shared counters and lookup paths that could be further improved (instead of simply applying OpenMP locks and atomic operations).
 
-A third direction is robustness to sparse or outlier key spaces, encountered by the Road/MathOverflow datasets. We mentioned that ALEX can have poor performance on outlier keys, leading to unnecessary tree depth, so adding modeling strategies for sparse key spaces may be beneficial.
+A third direction is the encoding itself. Remapping vertex IDs and comparing the resulting layouts would be a useful experiment before changing the index. The graph would stay the same, while the numerical distribution ALEX sees could change substantially.
 
 Finally, supporting persistent memory datasets is another direction we can go, along with secondary storage support and designing concurrency control tailored to ALEX’s layout.
 
-These mentioned solutions are consistent with where the field has been moving. Learned indexes can be integrated into persistent, disk-based distributed systems like Google's Bigtable, with improved read latency and throughput using a learned CDF model to predict which data block a key lives in. Knowledge graph systems, like Wikidata, stores facts in triples: (subject, predicate, object), which is extremely similar to how we encoded edges into this learned index. Queries on these systems are typically point lookups and short range queries, which is where ALEX_Graph was competitive. 
-
-While CSR-based structures remain the obvious answer for static graph analytics, they are extremely rigid when handling continuous updates. With the rise in demand of highly dynamic graph workloads and large knowledge graphs that prioritize patterned lookups over sequential traversal, specialized learned indices represent a viable architecture for the next generation of data storage built for rapid ingestion and point-query performance.
+What still interests me is whether a learned index designed around graph access patterns could retain the insertion benefits we saw without giving up efficient neighbor traversal. Our work doesn't establish that it would. It does give us a concrete tradeoff to investigate, and a reminder that a good result on key-value benchmarks doesn't automatically carry over to graph algorithms.
 
 ## Research poster
 
-Poster from our research presentation:
+Poster from our research presentation, preserved as presented. Its insertion summary differs from the saved comparison used above; the archived files don't establish whether those runs used matching settings.
 
 <iframe class="post-pdf-embed" src="writing/artifacts/Research%20Presentation%20-%20Ishaan%20Patel%20%26%20Dhananjay%20Raghu.pptx%20(1).pdf" title="Research presentation poster"></iframe>
 
