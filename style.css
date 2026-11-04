@@ -405,7 +405,7 @@ a:hover {
     font-weight: 400;
     color: var(--muted);
 }
-.compression-figures { display: grid; grid-template-columns: 0.8fr 1fr; gap: 8px; align-items: center; padding: 20px 16px 12px; }
+.compression-figures { display: grid; grid-template-columns: 0.8fr 1fr; gap: 24px; align-items: center; padding: 20px 16px 12px; }
 .weight-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; aspect-ratio: 1; }
 .weight-cell {
     background: var(--accent);
@@ -421,9 +421,10 @@ a:hover {
     0%, 100% { opacity: var(--shimmer-low); }
     50% { opacity: var(--shimmer-high); }
 }
+.tradeoff-figure { position: relative; }
 .tradeoff-figure svg { padding: 0; overflow: visible; }
 .plot-title { display: block; color: var(--muted); font: 10px/1.4 var(--sans); white-space: nowrap; }
-.plot-title-y { padding-left: 19%; }
+.plot-title-y { position: absolute; left: -14px; top: 0; height: calc(100% - 16px); writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; }
 .plot-title-x { margin-top: 2px; text-align: center; }
 .plot-axis { fill: none; stroke: var(--line); stroke-width: 1; }
 .plot-grid { fill: none; stroke: var(--line); stroke-width: 0.5; stroke-dasharray: 2 3; }
