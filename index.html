@@ -126,8 +126,8 @@
                     <p class="work-sub">Explains why US air quality spikes, not just what the number is</p>
                     <p class="work-desc">A live app that pulls from 11 sources, including AirNow monitors, weather,
                         NASA FIRMS fire hotspots and satellite aerosol data, to rank the likely causes of a local air
-                        quality spike. A second model checks every explanation against the data and swaps in a
-                        rule-based one when a check fails, and nightly evals fail the build if quality drops.</p>
+                        quality spike. A second model checks each explanation against the data and replaces failed
+                        ones with a rule-based fallback. Nightly evals fail the build if quality drops.</p>
                     <p class="work-links"><a href="https://getupwind.me">Live demo &rarr;</a> <a
                             href="https://github.com/Ishaan1402/upwind">GitHub</a></p>
                 </div>
@@ -141,7 +141,12 @@
                     <p class="work-desc">A custom U-Net with sliding-window inference over high-resolution UAV imagery,
                         so thin cracks stay visible without blowing GPU memory. Overlapping tiles are blended with a
                         Gaussian weight map; the current checkpoint adds squeeze-and-excitation and deep supervision.</p>
-                    <p class="work-metrics">0.730 Dice &middot; 0.575 IoU &middot; 0.739 recall &middot; 0.721 precision</p>
+                    <p class="work-metrics metric-help">
+                        <span class="metric-stat"><button type="button" class="metric-trigger" aria-describedby="dice-help">0.730 Dice</button><span class="metric-tip" id="dice-help" role="tooltip" hidden><span>How closely the predicted crack regions match the labeled cracks. 1.0 means perfect overlap.</span></span></span>
+                        &middot; <span class="metric-stat"><button type="button" class="metric-trigger" aria-describedby="iou-help">0.575 IoU</button><span class="metric-tip" id="iou-help" role="tooltip" hidden><span>The overlap between predicted and labeled cracks, divided by the total area covered by either. 1.0 is a perfect match.</span></span></span>
+                        &middot; <span class="metric-stat"><button type="button" class="metric-trigger" aria-describedby="recall-help">0.739 recall</button><span class="metric-tip" id="recall-help" role="tooltip" hidden><span>Of the pixels labeled as cracks, how many the model finds. Higher recall means fewer missed crack pixels.</span></span></span>
+                        &middot; <span class="metric-stat"><button type="button" class="metric-trigger" aria-describedby="precision-help">0.721 precision</button><span class="metric-tip" id="precision-help" role="tooltip" hidden><span>Of the pixels the model marks as cracks, how many match the labels. Higher precision means fewer false alarms.</span></span></span>
+                    </p>
                     <p class="work-links"><a href="https://huggingface.co/spaces/ishaan1402/crack-seg-demo">Live demo &rarr;</a>
                         <a href="writing/artifacts/bridge_crack_detection_poster_final.pdf">Poster PDF</a>
                         <a href="https://github.com/Ishaan1402/crack-seg">GitHub</a> <a
@@ -192,18 +197,19 @@
                     <div class="compression-figures">
                         <div class="weight-figure"><div id="weight-grid" class="weight-grid" aria-hidden="true"></div></div>
                         <div class="tradeoff-figure">
-                            <svg viewBox="0 0 148 134" role="img" aria-labelledby="bn-title bn-desc">
+                            <span class="plot-title plot-title-y">Accuracy (%)</span>
+                            <svg viewBox="0 0 148 124" role="img" aria-labelledby="bn-title bn-desc">
                                 <title id="bn-title">BuoyNet model size versus accuracy</title>
                                 <desc id="bn-desc">Five measured variants range from 5.98 MB at 98.91 percent accuracy to 1.52 MB at 91.60 percent accuracy. The slider selects a variant.</desc>
                                 <path class="plot-axis" d="M28 14 V106 H142"/>
                                 <path class="plot-grid" d="M28 14 H142 M28 60 H142"/>
                                 <text class="plot-label" x="23" y="18" text-anchor="end">100</text><text class="plot-label" x="23" y="64" text-anchor="end">95</text><text class="plot-label" x="23" y="109" text-anchor="end">90</text>
-                                <text class="plot-label" x="28" y="120" text-anchor="middle">0</text><text class="plot-label" x="142" y="120" text-anchor="end">6 MB</text>
-                                <text class="plot-label" x="28" y="9">Accuracy %</text>
+                                <text class="plot-label" x="28" y="120" text-anchor="middle">0</text><text class="plot-label" x="142" y="120" text-anchor="end">6</text>
                                 <polyline class="plot-line" points="141.62,24.028 108.56,49.88 85.76,59.08 71.32,72.88 56.88,91.28"/>
                                 <g class="plot-points"><circle cx="141.62" cy="24.028" r="3"/><circle cx="108.56" cy="49.88" r="3"/><circle cx="85.76" cy="59.08" r="3"/><circle cx="71.32" cy="72.88" r="3"/><circle cx="56.88" cy="91.28" r="3"/></g>
                                 <circle id="variant-point" cx="141.62" cy="24.028" r="5"/>
                             </svg>
+                            <span class="plot-title plot-title-x">Model size (MB)</span>
                         </div>
                     </div>
                     <label class="variant-label" for="compression-range"><span id="variant-name">FP32 baseline</span><span id="variant-step">1 / 5</span></label>

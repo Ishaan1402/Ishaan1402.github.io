@@ -245,6 +245,41 @@ a:hover {
     margin-bottom: 14px;
 }
 
+.metric-help { position: relative; }
+.metric-stat { display: inline-block; }
+.metric-trigger {
+    border: 0;
+    padding: 3px 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: help;
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--line);
+}
+.metric-trigger:hover { color: var(--accent); }
+.metric-trigger:focus-visible { outline: 1px solid var(--accent); outline-offset: 3px; }
+.metric-tip {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    padding-bottom: 6px;
+    z-index: 5;
+    color: var(--ink);
+    font-size: 12px;
+    line-height: 1.5;
+}
+.metric-tip > span {
+    display: block;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--paper);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
 .work-links {
     display: flex;
     flex-wrap: wrap;
@@ -387,6 +422,9 @@ a:hover {
     50% { opacity: var(--shimmer-high); }
 }
 .tradeoff-figure svg { padding: 0; overflow: visible; }
+.plot-title { display: block; color: var(--muted); font: 10px/1.4 var(--sans); white-space: nowrap; }
+.plot-title-y { padding-left: 19%; }
+.plot-title-x { margin-top: 2px; text-align: center; }
 .plot-axis { fill: none; stroke: var(--line); stroke-width: 1; }
 .plot-grid { fill: none; stroke: var(--line); stroke-width: 0.5; stroke-dasharray: 2 3; }
 .plot-label { fill: var(--muted); font: 9px var(--mono); }

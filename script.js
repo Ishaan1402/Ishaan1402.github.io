@@ -41,6 +41,32 @@
         updateSlider(range.value);
     }
 
+    /* Metric definitions: hover, keyboard focus, or tap; Escape/outside tap dismisses. */
+    var metricStats = document.querySelectorAll('.metric-stat');
+    function showMetric(active) {
+        metricStats.forEach(function (stat) {
+            stat.querySelector('.metric-tip').hidden = stat !== active;
+        });
+    }
+    metricStats.forEach(function (stat) {
+        var button = stat.querySelector('.metric-trigger');
+        stat.addEventListener('pointerenter', function (event) {
+            if (event.pointerType === 'mouse') showMetric(stat);
+        });
+        stat.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse' && document.activeElement !== button) showMetric(null);
+        });
+        button.addEventListener('focus', function () { showMetric(stat); });
+        button.addEventListener('click', function () { showMetric(stat); });
+        button.addEventListener('blur', function () { showMetric(null); });
+    });
+    document.addEventListener('pointerdown', function (event) {
+        if (!event.target.closest('.metric-stat')) showMetric(null);
+    });
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') showMetric(null);
+    });
+
     /* BuoyNet: measured variants from the repository's Results table.
        The deterministic weight grid illustrates sparsity, not checkpoint weights.
        Payload is CSR + Huffman size, not dense in-memory model size. */
