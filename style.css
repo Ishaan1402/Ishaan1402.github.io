@@ -365,7 +365,7 @@ a:hover {
     font-size: 11px;
     font-weight: 500;
 }
-.specimen-label, .figure-caption {
+.specimen-label {
     font-size: 10px;
     font-weight: 400;
     color: var(--muted);
@@ -386,7 +386,6 @@ a:hover {
     0%, 100% { opacity: var(--shimmer-low); }
     50% { opacity: var(--shimmer-high); }
 }
-.figure-caption { display: block; font-size: 9px; margin-top: 7px; }
 .tradeoff-figure svg { padding: 0; overflow: visible; }
 .plot-axis { fill: none; stroke: var(--line); stroke-width: 1; }
 .plot-grid { fill: none; stroke: var(--line); stroke-width: 0.5; stroke-dasharray: 2 3; }
