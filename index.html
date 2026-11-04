@@ -52,7 +52,7 @@
         </header>
 
         <section class="sec" aria-label="Selected work">
-            <article class="work" id="eir">
+            <article class="work lead" id="eir">
                 <div class="work-copy">
                     <span class="idx">01</span>
                     <h2 class="work-name">Eir</h2>
@@ -61,24 +61,6 @@
                         The crew talks the way they already do; Eir writes up the report, pulls out vitals along with
                         the exact words they came from, and suggests an ESI triage level for the clinician to confirm.</p>
                     <p class="work-links"><a href="https://github.com/Ishaan1402/Eir">GitHub</a></p>
-                </div>
-                <div class="work-visual evidence-visual">
-                    <div class="visual-heading"><span>Ambulance report</span><span class="specimen-label">Fictional sample</span></div>
-                    <!-- Excerpt: Eir/demo/three_patients.json, SYN008, reports.update. -->
-                    <blockquote class="report-excerpt">“Still weak. <mark id="eir-source-hr" class="is-selected">Heart rate 128</mark>,
-                        <mark id="eir-source-bp">BP 92 over 58</mark>, respirations 28.”</blockquote>
-                    <div class="evidence-link" aria-hidden="true"><span></span><span>Source-linked vitals</span><span></span></div>
-                    <div class="vital-options" role="group" aria-label="Highlight the source of a vital sign">
-                        <button type="button" class="vital-option" aria-pressed="true" aria-controls="eir-source-hr" data-evidence="hr">
-                            <span>Heart rate</span><strong>128 <small>bpm</small></strong>
-                        </button>
-                        <button type="button" class="vital-option" aria-pressed="false" aria-controls="eir-source-bp" data-evidence="bp">
-                            <span>Blood pressure</span><strong>92/58 <small>mmHg</small></strong>
-                        </button>
-                    </div>
-                    <p class="interaction-hint">Select a vital to trace its source.</p>
-                    <div class="review-boundary"><span aria-hidden="true">○</span> Triage remains with the clinician</div>
-                    <p class="sr-only" id="eir-source-announcement" aria-live="polite">Heart rate 128 bpm. Source: Heart rate 128.</p>
                 </div>
             </article>
 
@@ -125,7 +107,7 @@
                 </div>
             </article>
 
-            <article class="work" id="pathfinder">
+            <article class="work lead" id="pathfinder">
                 <div class="work-copy">
                     <span class="idx">04</span>
                     <h2 class="work-name">Pathfinder</h2>
@@ -136,49 +118,6 @@
                         read-only access to the run database; the optimization is never blocked by or dependent on the LLM.
                     </p>
                     <p class="work-links"><a href="https://github.com/Ishaan1402/pathfinder">GitHub</a></p>
-                </div>
-                <div class="work-visual pathfinder-visual" id="pathfinder-visual">
-                    <div class="visual-heading"><span>Independent by design</span></div>
-                    <div class="architecture">
-                        <svg viewBox="0 0 288 212" role="img" aria-labelledby="pf-title pf-desc">
-                            <title id="pf-title">Pathfinder separates optimization from agent inspection</title>
-                            <desc id="pf-desc">A training worker requests parameters from an Optuna broker and reports results. The broker stores trial history in SQLite. An IDE agent reads a review packet through MCP; it is not part of the training loop.</desc>
-                            <defs><marker id="pf-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 6 3 0 6" fill="none" stroke="context-stroke"/></marker></defs>
-                            <g class="training-path" fill="none" stroke="currentColor" stroke-width="1.2">
-                                <path d="M106 50 H182" marker-start="url(#pf-arrow)"/>
-                                <path d="M106 75 H182" marker-end="url(#pf-arrow)"/>
-                                <path d="M234 94 V135" marker-end="url(#pf-arrow)"/>
-                            </g>
-                            <text class="diagram-label" x="144" y="43" text-anchor="middle">suggest</text>
-                            <text class="diagram-label" x="144" y="90" text-anchor="middle">report</text>
-                            <text class="diagram-label" x="226" y="120" text-anchor="end">persist</text>
-                            <rect class="diagram-node" x="10" y="30" width="96" height="64" rx="3"/>
-                            <text class="diagram-name" x="58" y="57" text-anchor="middle">Worker</text>
-                            <text class="diagram-label" x="58" y="75" text-anchor="middle">Training loop</text>
-                            <rect class="diagram-node" x="182" y="30" width="96" height="64" rx="3"/>
-                            <text class="diagram-name" x="230" y="57" text-anchor="middle">Broker</text>
-                            <text class="diagram-label" x="230" y="75" text-anchor="middle">Optuna TPE</text>
-                            <rect class="diagram-node" x="182" y="137" width="96" height="58" rx="3"/>
-                            <text class="diagram-name" x="230" y="162" text-anchor="middle">Trial history</text>
-                            <text class="diagram-label" x="230" y="180" text-anchor="middle">SQLite WAL</text>
-                            <g class="inspection-path">
-                                <path d="M182 166 H106" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" marker-end="url(#pf-arrow)"/>
-                                <text class="diagram-label" x="144" y="154" text-anchor="middle">MCP</text>
-                                <text class="diagram-label" x="144" y="183" text-anchor="middle">read-only</text>
-                                <rect class="diagram-node" x="10" y="137" width="96" height="58" rx="3"/>
-                                <text class="diagram-name" x="58" y="162" text-anchor="middle">IDE agent</text>
-                                <text class="diagram-label" x="58" y="180" text-anchor="middle">On request</text>
-                            </g>
-                        </svg>
-                    </div>
-                    <button type="button" class="inspect-button" id="inspect-run" aria-expanded="false" aria-controls="study-packet">Inspect review packet <span aria-hidden="true">↗</span></button>
-                    <div class="packet-slot">
-                        <p id="packet-rest" class="packet-rest">Training never waits on the LLM.</p>
-                        <div id="study-packet" class="study-packet" hidden>
-                            <span class="packet-label">Available in the MCP resource</span>
-                            <ul><li>Trial counts &amp; health</li><li>VRAM &amp; OOM patterns</li><li>Parameter importance</li></ul>
-                        </div>
-                    </div>
                 </div>
             </article>
 
@@ -216,7 +155,7 @@
                     <input id="compression-range" class="compression-range" type="range" min="0" max="4" step="1" value="0" aria-label="Model compression variant" aria-valuetext="FP32 baseline: 5.98 MB, 98.91 percent accuracy">
                     <div class="range-endpoints" aria-hidden="true"><span>Baseline</span><span>70% pruned</span></div>
                     <div class="compression-result" aria-live="polite" aria-atomic="true"><span><strong id="variant-size">5.98</strong> MB</span><span><strong id="variant-accuracy">98.91</strong>% accuracy</span></div>
-                    <p class="visual-note"><a href="https://github.com/Ishaan1402/BuoyNet#results">Measured variants</a> · CSR + Huffman payload</p>
+                    <div class="visual-note compression-footer"><a href="https://github.com/Ishaan1402/BuoyNet#results">Measured variants</a><button type="button" id="toggle-shimmer" aria-pressed="false">Pause shimmer</button></div>
                 </div>
             </article>
         </section>
