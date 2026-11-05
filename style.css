@@ -171,17 +171,16 @@ a:hover {
 
 .btn {
     display: inline-block;
-    border: 1px solid var(--accent);
     color: var(--accent);
-    padding: 9px 18px;
     font-size: 14.5px;
-    transition: background 0.15s ease, color 0.15s ease;
+    font-weight: 600;
+    transition: color 0.15s ease;
 }
 
 .btn:hover {
-    background: var(--accent);
-    color: var(--accent-contrast);
-    text-decoration: none;
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .link {
